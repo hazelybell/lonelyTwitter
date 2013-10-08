@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Marios says:</string>
+    <string name="app_name">LonelyTwitter</string>
+    <string name="save">Save</string>
+
+</resources>
