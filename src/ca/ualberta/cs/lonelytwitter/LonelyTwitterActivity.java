@@ -8,6 +8,8 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -27,6 +29,10 @@ public class LonelyTwitterActivity extends Activity {
 	private EditText bodyText;
 	private ListView oldTweetsList;
 	
+	private ArrayList<LonelyTweet> lts;
+	private ArrayList<String> tweets;
+	private ArrayAdapter<String> adapter;
+	
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -36,38 +42,55 @@ public class LonelyTwitterActivity extends Activity {
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
+		Button clearButton = (Button) findViewById(R.id.clear);
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
+				tweets.add("Just now | " + text);
+				adapter.notifyDataSetChanged();
+				bodyText.setText("");
 				saveInFile(text, new Date(System.currentTimeMillis()));
-				finish();
-
 			}
 		});
+		
+		
+		clearButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				setResult(RESULT_OK);
+				tweets.clear();
+				adapter.notifyDataSetChanged();
+				lts.clear();
+				saveAllTweets();
+			}
+		});
+		
 	}
 
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		String[] tweets = loadFromFile();
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+		lts = new ArrayList<LonelyTweet>();
+		tweets = loadFromFile();
+		adapter = new ArrayAdapter<String>(this,
 				R.layout.list_item, tweets);
 		oldTweetsList.setAdapter(adapter);
+		
 	}
 
-	private String[] loadFromFile() {
+	private ArrayList<String> loadFromFile() {
 		ArrayList<String> tweets = new ArrayList<String>();
 		try {
 			FileInputStream fis = openFileInput(FILENAME);
-			BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-			String line = in.readLine();
-			while (line != null) {
-				tweets.add(line);
-				line = in.readLine();
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			while (true) {
+				LonelyTweet lt = (LonelyTweet) ois.readObject();
+				tweets.add(lt.toString());
+				lts.add(lt);
 			}
 
 		} catch (FileNotFoundException e) {
@@ -76,16 +99,21 @@ public class LonelyTwitterActivity extends Activity {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-		return tweets.toArray(new String[tweets.size()]);
+		return tweets;
 	}
 	
-	private void saveInFile(String text, Date date) {
+	private void saveAllTweets() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
-					Context.MODE_APPEND);
-			fos.write(new String(date.toGMTString() + " | " + text)
-					.getBytes());
+					0);
+			ObjectOutputStream oos = new ObjectOutputStream(fos);
+			for (LonelyTweet lti : lts) {
+				oos.writeObject(lti);
+			}
 			fos.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -94,5 +122,11 @@ public class LonelyTwitterActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+	private void saveInFile(String text, Date date) {
+		LonelyTweet lt = new LonelyTweet(date, text);
+		lts.add(lt);
+		saveAllTweets();
 	}
 }
