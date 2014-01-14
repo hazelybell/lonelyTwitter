@@ -1,11 +1,9 @@
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.ObjectInputStream;
@@ -16,7 +14,6 @@ import java.util.Date;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -109,11 +106,9 @@ public class LonelyTwitterActivity extends Activity {
 	private void saveAllTweets() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
-					0);
-			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			for (LonelyTweet lti : lts) {
-				oos.writeObject(lti);
-			}
+					Context.MODE_APPEND);
+			fos.write(new String(date.toString() + " | " + text)
+					.getBytes());
 			fos.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
