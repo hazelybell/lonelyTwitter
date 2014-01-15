@@ -10,6 +10,14 @@ public class normalTweetModel extends lonelyTweetModel {
 	public void setText(String text) {
 		
 	}
+	
+	@Override
+	public void setImportant(boolean important) throws Exception {
+		if (important) {
+			throw new IllegalArgumentException();
+		}
+		this.important = important;
+	}
 
 
 }

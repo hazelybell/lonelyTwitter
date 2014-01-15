@@ -5,6 +5,8 @@ import java.util.Date;
 public abstract class lonelyTweetModel {
 	protected String text;
 	protected Date timestamp;
+	protected boolean important;
+	
 	public String getText() {
 		return text;
 	}
@@ -26,5 +28,8 @@ public abstract class lonelyTweetModel {
 		this.text = text;
 		this.timestamp = new Date();
 	}
-	
+	public boolean getImportant() {
+		return important;
+	}
+	public abstract void setImportant(boolean important) throws Exception;
 }
