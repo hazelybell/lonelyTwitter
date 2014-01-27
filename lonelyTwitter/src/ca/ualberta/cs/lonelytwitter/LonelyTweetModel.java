@@ -4,7 +4,8 @@ import java.util.Date;
 
 public abstract class LonelyTweetModel {
 	private String text;
-	private Date timestamp;
+	protected Date timestamp;
+	
 	public String getText() {
 		return text;
 	}
@@ -29,5 +30,14 @@ public abstract class LonelyTweetModel {
 	
 	public void setTimestamp(Date timestamp) {
 		this.timestamp = timestamp;
+	}
+	
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof LonelyTweetModel)) {
+			return false;
+		}
+		
+		LonelyTweetModel otherTweet = (LonelyTweetModel) other;
+		return timestamp.equals(otherTweet.timestamp) && text.equals(otherTweet.text);
 	}
 }
