@@ -3,23 +3,33 @@ package ca.ualberta.cs.lonelytwitter.test;
 import java.util.Date;
 
 import android.test.ActivityInstrumentationTestCase2;
-import ca.ualberta.cs.lonelytwitter.ImportantTweetModel;
 import ca.ualberta.cs.lonelytwitter.LonelyTwitterActivity;
 import ca.ualberta.cs.lonelytwitter.NormalTweetModel;
+import ca.ualberta.cs.lonelytwitter.TweetSetModel;
 
-public class ImportantTweetEqualsTest extends
+public class TweetSetModelAddTest extends
 		ActivityInstrumentationTestCase2<LonelyTwitterActivity> {
 
-	public ImportantTweetEqualsTest() {
+	public TweetSetModelAddTest() {
 		super(LonelyTwitterActivity.class);
+		
 	}
-
-	public void testEquals(){
+	
+	public void testAdd(){
+		TweetSetModel tsm = new TweetSetModel();
 		Date dt = new Date(System.currentTimeMillis());
-		ImportantTweetModel itm = new ImportantTweetModel("test", dt);
 		NormalTweetModel ntm = new NormalTweetModel("test", dt);
-		boolean a = itm.equals(ntm);
-		assertEquals("Should pass now.", false, a);
-
+		
+		tsm.addTweet(ntm);
+		try{
+			tsm.addTweet(ntm);
+			fail();
+		}
+		catch (IllegalArgumentException e){
+			
+		}
+		
 	}
+	
+
 }
