@@ -10,6 +10,7 @@ public class LonelyTweetModelTest extends ActivityInstrumentationTestCase2<Lonel
 	}
 
 	public void testFailure(){
+		
 		assertEquals("5 should equal 5", 5, 5);
 	}
 }
