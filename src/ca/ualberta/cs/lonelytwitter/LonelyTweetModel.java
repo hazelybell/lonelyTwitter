@@ -36,4 +36,12 @@ public class LonelyTweetModel {
 	public String toString() {
 		return new String(timestamp.toString() + " | " + text);
 	}
+
+	public boolean equals(Object other) {
+		if (other == null || !(other instanceof LonelyTweetModel)) {
+			return false;
+		}
+		LonelyTweetModel otherTweet = (LonelyTweetModel) other;
+		return text.equals(otherTweet.text);
+	}
 }
