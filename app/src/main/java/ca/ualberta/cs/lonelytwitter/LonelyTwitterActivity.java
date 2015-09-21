@@ -23,6 +23,9 @@ public class LonelyTwitterActivity extends Activity {
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
+	private ArrayList<Tweet> tweets = new ArrayList<Tweet>();
+	private ArrayAdapter<Tweet> adapter;
+
 
 	/** Called when the activity is first created. */
 	@Override
@@ -40,9 +43,8 @@ public class LonelyTwitterActivity extends Activity {
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
-				saveInFile(text, new Date(System.currentTimeMillis()));
-				finish();
-
+				tweets.add(new NormalTweet(text));
+				adapter.notifyDataSetChanged();
 			}
 		});
 	}
@@ -51,9 +53,7 @@ public class LonelyTwitterActivity extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		String[] tweets = loadFromFile();
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				R.layout.list_item, tweets);
+		adapter = new ArrayAdapter<Tweet>(this, R.layout.list_item, tweets);
 		oldTweetsList.setAdapter(adapter);
 	}
 
