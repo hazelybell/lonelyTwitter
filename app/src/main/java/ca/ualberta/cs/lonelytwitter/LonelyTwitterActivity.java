@@ -72,7 +72,6 @@ public class LonelyTwitterActivity extends Activity {
 				adapter.notifyDataSetChanged();
 			}
 		});
-
 	}
 
 	@Override
@@ -89,7 +88,7 @@ public class LonelyTwitterActivity extends Activity {
 			FileInputStream fis = openFileInput(FILENAME);
 			BufferedReader in = new BufferedReader(new InputStreamReader(fis));
 			Gson gson = new Gson();
-			//taken from https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html
+			// Taken from https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html 2015-09-22
 			Type listType = new TypeToken<ArrayList<NormalTweet>>() {}.getType();
 			tweets = gson.fromJson(in, listType);
 		} catch (FileNotFoundException e) {
