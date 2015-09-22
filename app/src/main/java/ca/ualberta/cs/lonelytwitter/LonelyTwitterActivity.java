@@ -6,8 +6,11 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
@@ -17,6 +20,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 public class LonelyTwitterActivity extends Activity {
 
@@ -35,61 +41,77 @@ public class LonelyTwitterActivity extends Activity {
 
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
+        Button clearButton = (Button) findViewById(R.id.clear);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
-				String text = bodyText.getText().toString();
+                String text = bodyText.getText().toString();
 				tweets.add(new NormalTweet(text));
 				adapter.notifyDataSetChanged();
+                saveInFile();
 			}
 		});
+
+        clearButton.setOnClickListener(new View.OnClickListener() {
+
+            public void onClick(View v) {
+                setResult(RESULT_OK);
+               // tweets.deleteFile(FILENAME);
+                tweets.clear();
+                adapter.notifyDataSetChanged();
+                saveInFile();
+
+            }
+        });
+
+
 	}
 
-	@Override
-	protected void onStart() {
-		// TODO Auto-generated method stub
-		super.onStart();
-		adapter = new ArrayAdapter<Tweet>(this, R.layout.list_item, tweets);
-		oldTweetsList.setAdapter(adapter);
+    @Override
+    protected void onStart() {
+        // TODO Auto-generated method stub
+        super.onStart();
+        loadFromFile();
+        adapter = new ArrayAdapter<Tweet>(this,
+                R.layout.list_item, tweets);
+        oldTweetsList.setAdapter(adapter);
+    }
+
+
+    private void loadFromFile() {
+      //  ArrayList<String> tweets = new ArrayList<String>();
+        try {
+            FileInputStream fis = openFileInput(FILENAME);
+            BufferedReader in = new BufferedReader(new InputStreamReader(fis));
+            Gson gson = new Gson();
+            Type listType = new TypeToken<ArrayList<NormalTweet>>(){}.getType();
+            tweets = gson.fromJson(in, listType);
+
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            tweets = new ArrayList<Tweet>();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            throw new RuntimeException(e);
+        }
 	}
 
-	private String[] loadFromFile() {
-		ArrayList<String> tweets = new ArrayList<String>();
-		try {
-			FileInputStream fis = openFileInput(FILENAME);
-			BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-			String line = in.readLine();
-			while (line != null) {
-				tweets.add(line);
-				line = in.readLine();
-			}
+    private void saveInFile() {
+        try {
+            FileOutputStream fos = openFileOutput(FILENAME,
+                    0);
+            OutputStreamWriter writer = new OutputStreamWriter(fos);
+            Gson gson = new Gson();
+            gson.toJson(tweets, writer);
+            writer.flush();
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		return tweets.toArray(new String[tweets.size()]);
-	}
-	
-	private void saveInFile(String text, Date date) {
-		try {
-			FileOutputStream fos = openFileOutput(FILENAME,
-					Context.MODE_APPEND);
-			fos.write(new String(date.toString() + " | " + text)
-					.getBytes());
-			fos.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 }
