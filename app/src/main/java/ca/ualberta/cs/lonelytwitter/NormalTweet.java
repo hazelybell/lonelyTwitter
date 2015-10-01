@@ -10,6 +10,7 @@ public class NormalTweet extends Tweet {
         super(tweet, date);
     }
 
+
     public NormalTweet(String tweet) {
         super(tweet);
     }
