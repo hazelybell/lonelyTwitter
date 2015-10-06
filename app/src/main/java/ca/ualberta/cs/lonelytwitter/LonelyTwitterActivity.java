@@ -35,21 +35,21 @@ public class LonelyTwitterActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		super.onCreate(savedInstanceState); // view
+		setContentView(R.layout.main); // view
 
-		bodyText = (EditText) findViewById(R.id.body);
-		Button saveButton = (Button) findViewById(R.id.save);
-		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
+		bodyText = (EditText) findViewById(R.id.body); //view
+		Button saveButton = (Button) findViewById(R.id.save); //view
+		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList); //view
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
-				String text = bodyText.getText().toString();
-				tweets.add(new NormalTweet(text));
-				adapter.notifyDataSetChanged();
-				saveInFile();
+				String text = bodyText.getText().toString(); //controller
+				tweets.add(new NormalTweet(text)); // controller
+				adapter.notifyDataSetChanged(); // view
+				saveInFile(); // model
 			}
 		});
 	}
