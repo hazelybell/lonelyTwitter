@@ -55,18 +55,7 @@ public class LonelyTwitterActivity extends Activity {
 			}
 		});
 
-      /*clearButton.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                setResult(RESULT_OK);
-               // tweets.deleteFile(FILENAME);
-                tweets.clear();                              // controller
-                adapter.notifyDataSetChanged();              // view
-                saveInFile();                                // model
-
-            }
-        });
-*/
+  
 
 	}
 
