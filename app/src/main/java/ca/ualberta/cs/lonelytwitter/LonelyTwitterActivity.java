@@ -36,70 +36,65 @@ public class LonelyTwitterActivity extends Activity {
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		super.onCreate(savedInstanceState); // view
+		setContentView(R.layout.main);      // view
 
-		bodyText = (EditText) findViewById(R.id.body);
-		Button saveButton = (Button) findViewById(R.id.save);
-        	Button clearButton = (Button) findViewById(R.id.clear);
-		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
+		bodyText = (EditText) findViewById(R.id.body);               // view
+		Button saveButton = (Button) findViewById(R.id.save);        // view
+      //Button clearButton = (Button) findViewById(R.id.clear);      // view
+		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList); // view
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
-                String text = bodyText.getText().toString();
-				tweets.add(new NormalTweet(text));
-				adapter.notifyDataSetChanged();
-                saveInFile();
+                String text = bodyText.getText().toString();  // controller - changes stuff for user
+				tweets.add(new NormalTweet(text));            // controller - changes stuff for user
+				adapter.notifyDataSetChanged();               // view -- doesn't notify of any changes
+                saveInFile();                                 // model - changes stuff on disk, not for user
 			}
 		});
 
-        clearButton.setOnClickListener(new View.OnClickListener() {
+      /*clearButton.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v) {
                 setResult(RESULT_OK);
                // tweets.deleteFile(FILENAME);
-                tweets.clear();
-                adapter.notifyDataSetChanged();
-                saveInFile();
+                tweets.clear();                              // controller
+                adapter.notifyDataSetChanged();              // view
+                saveInFile();                                // model
 
             }
         });
-
+*/
 
 	}
 
     @Override
     protected void onStart() {
         // TODO Auto-generated method stub
-        super.onStart();
-        loadFromFile();
-        adapter = new ArrayAdapter<Tweet>(this,
-                R.layout.list_item, tweets);
-        oldTweetsList.setAdapter(adapter);
+        super.onStart();                                                       // model
+        loadFromFile();                                                        // model
+        adapter = new ArrayAdapter<Tweet>(this, R.layout.list_item, tweets);   // model
+        oldTweetsList.setAdapter(adapter);                                     // model
     }
 
-
-    private void loadFromFile() {
-      //  ArrayList<String> tweets = new ArrayList<String>();
+    private void loadFromFile() {  // entire function is model, only adjusting things on disk
         try {
             FileInputStream fis = openFileInput(FILENAME);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
             Gson gson = new Gson();
-            Type listType = new TypeToken<ArrayList<NormalTweet>>(){}.getType();
+            // Taken from https://google-gson.googlecode.com/svn/trunk/gson/docs/javadocs/com/google/gson/Gson.html 2015-09-22
+            Type listType = new TypeToken<ArrayList<NormalTweet>>() {}.getType();
             tweets = gson.fromJson(in, listType);
-
         } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
             tweets = new ArrayList<Tweet>();
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             throw new RuntimeException(e);
         }
-	}
+    }
 
-    private void saveInFile() {
+    private void saveInFile() { // entire function is model
         try {
             FileOutputStream fos = openFileOutput(FILENAME,
                     0);
@@ -107,11 +102,11 @@ public class LonelyTwitterActivity extends Activity {
             Gson gson = new Gson();
             gson.toJson(tweets, writer);
             writer.flush();
+            fos.close();
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-
-	}
+    }
 }
