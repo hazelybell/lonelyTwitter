@@ -41,32 +41,21 @@ public class LonelyTwitterActivity extends Activity {
 
 		bodyText = (EditText) findViewById(R.id.body);               // view
 		Button saveButton = (Button) findViewById(R.id.save);        // view
-      //Button clearButton = (Button) findViewById(R.id.clear);      // view
+              //Button clearButton = (Button) findViewById(R.id.clear);      // view
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList); // view
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
-                String text = bodyText.getText().toString();  // controller - changes stuff for user
+        		        String text = bodyText.getText().toString();  // controller - changes stuff for user
 				tweets.add(new NormalTweet(text));            // controller - changes stuff for user
 				adapter.notifyDataSetChanged();               // view -- doesn't notify of any changes
-                saveInFile();                                 // model - changes stuff on disk, not for user
+        		        saveInFile();                                 // model - changes stuff on disk, not for user
 			}
 		});
+  });
 
-      /*clearButton.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-                setResult(RESULT_OK);
-               // tweets.deleteFile(FILENAME);
-                tweets.clear();                              // controller
-                adapter.notifyDataSetChanged();              // view
-                saveInFile();                                // model
-
-            }
-        });
-*/
 
 	}
 
