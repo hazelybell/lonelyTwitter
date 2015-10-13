@@ -57,6 +57,11 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2 
         Tweet tweet = (Tweet) oldTweetsList.getItemAtPosition(0);
         assertEquals("hamburgers", tweet.getText());
 
+        // Set up an ActivityMonitor
+        Instrumentation.ActivityMonitor receiverActivityMonitor =
+                getInstrumentation().addMonitor(EditTweetActivity.class.getName(),
+                        null, false);
+
         activity.runOnUiThread(new Runnable() {
             public void run() {
                 View v = oldTweetsList.getChildAt(0);
@@ -67,10 +72,6 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2 
 
 
         // Following was stolen from https://developer.android.com/training/activity-testing/activity-functional-testing.html 2015-10-13
-        // Set up an ActivityMonitor
-        Instrumentation.ActivityMonitor receiverActivityMonitor =
-                getInstrumentation().addMonitor(EditTweetActivity.class.getName(),
-                        null, false);
 
         // Validate that ReceiverActivity is started
         EditTweetActivity receiverActivity = (EditTweetActivity)
@@ -85,6 +86,7 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2 
         getInstrumentation().removeMonitor(receiverActivityMonitor);
 
         // end of test: clear the data
-
+        // end of test: make sure the edit activity is closed
+        receiverActivity.finish();
     }
 }
