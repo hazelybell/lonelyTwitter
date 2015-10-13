@@ -59,5 +59,10 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2 
         assertEquals("Monitor for ReceiverActivity has not been called", 1, receiverActivityMonitor.getHits());
         assertEquals("Activity is of wrong type", EditTweetActivity.class, receiverActivity.getClass());
         getInstrumentation().removeMonitor(receiverActivityMonitor);
+
+        EditText editText = receiverActivity.getEditText();
+        Button editSaveButton = receiverActivity.getSaveButton();
+
+        assertEquals(tweet.getText(), editText.getText().toString());
     }
 }
