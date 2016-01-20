@@ -24,7 +24,6 @@ public abstract class Tweet {
         this.date = new Date();
     }
 
-
     public void setMessage(String message) throws TweetTooLongException {
         if (message.length() > 140) {
             throw new TweetTooLongException();

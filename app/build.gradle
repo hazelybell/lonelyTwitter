@@ -21,3 +21,7 @@ android {
         }
     }
 }
+
+dependencies {
+    compile 'com.google.code.gson:gson:2.5'
+}
