@@ -30,3 +30,5 @@ proguard/
 *.jar
 *.war
 *.ear
+
+.idea
