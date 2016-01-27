@@ -57,7 +57,6 @@ public class LonelyTwitterActivity extends Activity {
 				saveInFile();
 				//saveInFile(text, new Date(System.currentTimeMillis()));
 				//finish();
-
 			}
 		});
 
@@ -66,17 +65,14 @@ public class LonelyTwitterActivity extends Activity {
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				// this clears the tweets on the disk
-				tweets = new ArrayList<Tweet>();
+				tweets.clear();
 				// this clears the tweets on the screen
 				adapter.clear();
 				adapter.notifyDataSetChanged();
 				saveInFile();
-
 			}
 		});
-
-			;
-		}
+	}
 
 		@Override
 	protected void onStart() {
