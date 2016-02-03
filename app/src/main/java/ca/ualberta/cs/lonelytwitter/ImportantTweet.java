@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by romansky on 1/12/16.
+ * @author romansky on 1/12/16.
+ * This class will hold tweets that are set as important
  */
 public class ImportantTweet extends Tweet implements Tweetable {
     @Override

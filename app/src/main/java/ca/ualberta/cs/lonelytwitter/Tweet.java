@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 /**
- * Created by romansky on 1/12/16.
+ * @author romansky on 1/12/16.
+ * This class holds the information for a tweet including the date and the message
  */
 public abstract class Tweet {
     protected Date date;

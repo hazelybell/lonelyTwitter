@@ -4,7 +4,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 /**
- * Created by baydala on 1/26/16.
+ * @author baydala on 1/26/16.
+ * This class holds an array of tweets and allows this array to be edited
  */
 public class TweetList {
     private ArrayList<Tweet> tweets = new ArrayList<Tweet>();

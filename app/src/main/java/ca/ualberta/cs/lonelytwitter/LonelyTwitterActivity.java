@@ -10,10 +10,9 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Date;
 
 import android.app.Activity;
-import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -24,8 +23,41 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * The main activity for a small, personal Twitter app to capture, notes and comments
+ * <p>It saves the input tweets in the json files.</p>
+ * @see LonelyTwitterActivity for more information
+ * @author Martina
+ */
 public class LonelyTwitterActivity extends Activity {
 
+	// from here to someMethod() are examples of java formatting from lab
+	public ArrayList<String> listOfItems;
+	private int calculateTweetSize() {
+		//
+		return -1;
+	}
+	private String removeStopWords(String text) {
+		//
+		return "";
+	}
+
+	private void startSecondActivity(Intent intent) {
+		//
+	}
+
+	public String someMethod(String s) {
+		return "";
+	}
+
+	public boolean evaluateOtherActivity(Intent intent) {
+		Intent intent1 = new Intent();
+		String expression1 = "", expression2 = "", expression3 = "", expression4 = "";
+		startSecondActivity(intent1);
+		String S = someMethod(expression1 + expression2 + expression3 + expression4);
+		someMethod(expression1 + expression2 + expression3 + expression4);
+		return true;
+	}
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
@@ -44,6 +76,10 @@ public class LonelyTwitterActivity extends Activity {
 		Button clearButton = (Button) findViewById(R.id.clear);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
+		/**
+		 * Saves the tweet in the EditText field to the list of previous tweets when
+		 * the save button is clicked and updates the view displaying the previous tweets
+		 */
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -60,6 +96,9 @@ public class LonelyTwitterActivity extends Activity {
 			}
 		});
 
+		/**
+		 * Clears all of the previous tweets from the disk and on the screen
+		 */
 		clearButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -74,6 +113,9 @@ public class LonelyTwitterActivity extends Activity {
 		});
 	}
 
+	/**
+	 * Loads the previously saved tweets from the file and displays them on the screen
+	 */
 		@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -85,6 +127,9 @@ public class LonelyTwitterActivity extends Activity {
 		oldTweetsList.setAdapter(adapter);
 	}
 
+	/**
+	 * Collects the saved tweet list from the save file and converts them back from json
+	 */
 	private void loadFromFile() {
 		try {
 			FileInputStream fis = openFileInput(FILENAME);
@@ -103,7 +148,11 @@ public class LonelyTwitterActivity extends Activity {
 			throw new RuntimeException();
 		}
 	}
-	
+
+	/**
+	 * Saves the current list of tweets to a file as json so it the tweets will not be lost when
+	 * the app is closed
+	 */
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,

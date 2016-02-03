@@ -3,7 +3,8 @@ package ca.ualberta.cs.lonelytwitter;
 import java.util.Date;
 
 /**
- * Created by baydala on 1/12/16.
+ * @author baydala on 1/12/16.
+ * Class to hold the set mood of a tweet
  */
 public abstract class Mood {
     public String mood;

@@ -3,9 +3,9 @@ package ca.ualberta.cs.lonelytwitter;
 import java.util.Date;
 
 /**
- * Created by baydala on 1/12/16.
+ * @author baydala on 1/12/16.
+ * This class will hold tweets that are set as Happy
  */
-
 public class HappyMood extends Mood {
     public HappyMood(String mood, Date date) {
         super(mood, date);
