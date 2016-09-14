@@ -1,0 +1,83 @@
+[
+    {
+        "outputFile": "/home/john/Projects/Cmput_301/lonelyTwitter/app/build/intermediates/res/merged/debug/values/values.xml",
+        "map": [
+            {
+                "to": {
+                    "startLine": 2,
+                    "startColumn": 4,
+                    "startOffset": 55,
+                    "endColumn": 50,
+                    "endOffset": 101
+                },
+                "from": {
+                    "file": "/home/john/Projects/Cmput_301/lonelyTwitter/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 4,
+                        "startColumn": 4,
+                        "startOffset": 107,
+                        "endColumn": 50,
+                        "endOffset": 153
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 3,
+                    "startColumn": 4,
+                    "startOffset": 106,
+                    "endColumn": 39,
+                    "endOffset": 141
+                },
+                "from": {
+                    "file": "/home/john/Projects/Cmput_301/lonelyTwitter/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 6,
+                        "startColumn": 4,
+                        "startOffset": 197,
+                        "endColumn": 39,
+                        "endOffset": 232
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 4,
+                    "startColumn": 4,
+                    "startOffset": 146,
+                    "endColumn": 46,
+                    "endOffset": 188
+                },
+                "from": {
+                    "file": "/home/john/Projects/Cmput_301/lonelyTwitter/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 3,
+                        "startColumn": 4,
+                        "startOffset": 59,
+                        "endColumn": 46,
+                        "endOffset": 101
+                    }
+                }
+            },
+            {
+                "to": {
+                    "startLine": 5,
+                    "startColumn": 4,
+                    "startOffset": 193,
+                    "endColumn": 37,
+                    "endOffset": 226
+                },
+                "from": {
+                    "file": "/home/john/Projects/Cmput_301/lonelyTwitter/app/src/main/res/values/strings.xml",
+                    "position": {
+                        "startLine": 5,
+                        "startColumn": 4,
+                        "startOffset": 158,
+                        "endColumn": 37,
+                        "endOffset": 191
+                    }
+                }
+            }
+        ]
+    }
+]

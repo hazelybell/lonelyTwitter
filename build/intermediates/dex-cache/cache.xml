@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/john/Projects/Cmput_301/lonelyTwitter/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="a8aa538c8f718c9e61372491c931c9b1c55db373">
+        <dex dex="/home/john/Projects/Cmput_301/lonelyTwitter/app/build/intermediates/pre-dexed/debug/instant-run_da2cdc7a4213c19ec0f2e9edc74c28bffb9b6d81.jar" />
+    </item>
+    <item
+        jar="/home/john/Projects/Cmput_301/lonelyTwitter/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="22.0.1"
+        sha1="0f3dab0ace40249cb7782b87e226f509f2fda049">
+        <dex dex="/home/john/Projects/Cmput_301/lonelyTwitter/app/build/intermediates/pre-dexed/debug/instant-run-bootstrap_8303e96cba6e414c8c3d1f476ede6034d50dcdce.jar" />
+    </item>
+
+</items>
