@@ -37,9 +37,23 @@ public class LonelyTwitterActivity extends Activity {
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				setResult(RESULT_OK);
+                setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
-				saveInFile(text, new Date(System.currentTimeMillis()));
+
+				Tweet newTweet  =  new NormalTweet(text);
+                try {
+                    newTweet.SetMessage("This is a stupid tweet");
+                } catch (TweetTooLongException e) {
+                    e.printStackTrace();
+                }
+                ImportantTweet newImportantTweet = new ImportantTweet(text);
+
+                ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
+                tweetList.add(newTweet);
+                tweetList.add(newImportantTweet);
+
+
+                saveInFile(text, new Date(System.currentTimeMillis()));
 				finish();
 
 			}

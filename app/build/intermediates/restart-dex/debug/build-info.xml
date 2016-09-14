@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<instant-run
+    abi="x86"
+    api-level="19"
+    density="xhdpi"
+    format="7"
+    timestamp="12829895900449"
+    token="-7340149397689781823" >
+
+    <task
+        name="javac"
+        duration="629" />
+    <task
+        name="instant-run-dex"
+        duration="0" />
+    <task
+        name="instant-run-transform"
+        duration="116" />
+    <task
+        name="verifier"
+        duration="12" />
+
+    <artifact
+        location="/home/john/Projects/Cmput_301/lonelyTwitter/app/build/outputs/apk/app-debug.apk"
+        type="MAIN" />
+
+    <build timestamp="12829895900449" >
+        <artifact
+            location="/home/john/Projects/Cmput_301/lonelyTwitter/app/build/outputs/apk/app-debug.apk"
+            type="MAIN" />
+    </build>
+
+</instant-run>

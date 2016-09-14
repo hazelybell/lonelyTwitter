@@ -1,0 +1,10 @@
+[
+    {
+        "merged": "/home/john/Projects/Cmput_301/lonelyTwitter/app/build/intermediates/res/merged/debug/layout/main.xml",
+        "source": "/home/john/Projects/Cmput_301/lonelyTwitter/app/src/main/res/layout/main.xml"
+    },
+    {
+        "merged": "/home/john/Projects/Cmput_301/lonelyTwitter/app/build/intermediates/res/merged/debug/layout/list_item.xml",
+        "source": "/home/john/Projects/Cmput_301/lonelyTwitter/app/src/main/res/layout/list_item.xml"
+    }
+]
