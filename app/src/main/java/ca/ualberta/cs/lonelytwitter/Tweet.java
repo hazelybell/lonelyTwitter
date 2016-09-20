@@ -11,6 +11,7 @@ public abstract class Tweet {
 
     public Tweet(String message){
         this.message = message;
+        this.date = new Date();
     }
 
     public Tweet(String message, Date date){
@@ -42,5 +43,10 @@ public abstract class Tweet {
 
     public Date getDate() {
         return date;
+    }
+
+    @Override
+    public String toString(){
+        return  date.toString() + " | " + message;
     }
 }
