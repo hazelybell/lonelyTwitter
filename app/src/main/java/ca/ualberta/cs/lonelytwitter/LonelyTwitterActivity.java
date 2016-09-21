@@ -14,6 +14,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -51,7 +52,7 @@ public class LonelyTwitterActivity extends Activity {
 				tweetList.add(newTweet);
 				adapter.notifyDataSetChanged();
 
-//				saveInFile(text, new Date(System.currentTimeMillis()));
+				saveInFile(text, new Date(System.currentTimeMillis()));
 //				finish();
 
 			}
@@ -110,18 +111,17 @@ public class LonelyTwitterActivity extends Activity {
 			e.printStackTrace();
 		}
 		return tweets.toArray(new String[tweets.size()]);
-	}
-	
-	private void saveInFile(String text, Date date) {
-		try {
+	}	private void saveInFile(String text, Date date) {
+        try {
 			FileOutputStream fos = openFileOutput(FILENAME,
-					Context.MODE_APPEND);
+					Context.MODE_PRIVATE);
 			fos.write(new String(date.toString() + " | " + text)
 					.getBytes());
 			fos.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+            Log.e("myTag", "file not found");
+            e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
