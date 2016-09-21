@@ -1,6 +1,7 @@
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,6 +13,7 @@ import java.util.Date;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -53,6 +55,29 @@ public class LonelyTwitterActivity extends Activity {
 //				finish();
 
 			}
+		});
+
+		// implement clear button
+		Button clearButton = (Button) findViewById(R.id.clear);
+		clearButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				setResult(RESULT_OK);
+				tweetList.clear();
+                adapter.notifyDataSetChanged();
+                deleteFile("file.sav");
+
+                // recreate file
+//                File newFile = null;
+//                boolean bool = false;
+//                try {
+//                    newFile = new File("file.sav");
+//                    bool = newFile.createNewFile();
+//                }
+//                catch (Exception e){
+//                    //pass
+//                }
+            }
 		});
 	}
 
