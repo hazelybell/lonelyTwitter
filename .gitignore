@@ -30,3 +30,4 @@ proguard/
 *.jar
 *.war
 *.ear
+app/app.iml

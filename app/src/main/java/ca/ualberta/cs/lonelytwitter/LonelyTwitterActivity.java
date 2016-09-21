@@ -1,6 +1,7 @@
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -12,6 +13,8 @@ import java.util.Date;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,7 +26,11 @@ public class LonelyTwitterActivity extends Activity {
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
-	
+
+	private ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
+
+	private ArrayAdapter<Tweet> adapter;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -39,10 +46,39 @@ public class LonelyTwitterActivity extends Activity {
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
+
+				Tweet newTweet = new NormalTweet(text);
+
+				tweetList.add(newTweet);
+				adapter.notifyDataSetChanged();
+
 				saveInFile(text, new Date(System.currentTimeMillis()));
-				finish();
+//				finish();
 
 			}
+		});
+
+		// implement clear button
+		Button clearButton = (Button) findViewById(R.id.clear);
+		clearButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				setResult(RESULT_OK);
+				tweetList.clear();
+                adapter.notifyDataSetChanged();
+                deleteFile("file.sav");
+
+                // recreate file
+//                File newFile = null;
+//                boolean bool = false;
+//                try {
+//                    newFile = new File("file.sav");
+//                    bool = newFile.createNewFile();
+//                }
+//                catch (Exception e){
+//                    //pass
+//                }
+            }
 		});
 	}
 
@@ -50,9 +86,9 @@ public class LonelyTwitterActivity extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		String[] tweets = loadFromFile();
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				R.layout.list_item, tweets);
+//		String[] tweets = loadFromFile();
+		adapter = new ArrayAdapter<Tweet>(this,
+				R.layout.list_item, tweetList);
 		oldTweetsList.setAdapter(adapter);
 	}
 
@@ -75,18 +111,17 @@ public class LonelyTwitterActivity extends Activity {
 			e.printStackTrace();
 		}
 		return tweets.toArray(new String[tweets.size()]);
-	}
-	
-	private void saveInFile(String text, Date date) {
-		try {
+	}	private void saveInFile(String text, Date date) {
+        try {
 			FileOutputStream fos = openFileOutput(FILENAME,
-					Context.MODE_APPEND);
+					Context.MODE_PRIVATE);
 			fos.write(new String(date.toString() + " | " + text)
 					.getBytes());
 			fos.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+            Log.e("myTag", "file not found");
+            e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
