@@ -10,10 +10,8 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Date;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -41,14 +39,15 @@ public class LonelyTwitterActivity extends Activity {
 		setContentView(R.layout.main);
 
 		bodyText = (EditText) findViewById(R.id.body);
-		Button saveButton = (Button) findViewById(R.id.save);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
+		/* Create the save, or "Tweet" button. */
+		Button saveButton = (Button) findViewById(R.id.save);
 		saveButton.setOnClickListener(new View.OnClickListener() {
-
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
+                bodyText.setText("");
 
 				Tweet newTweet = new NormalTweet(text);
 
@@ -58,11 +57,21 @@ public class LonelyTwitterActivity extends Activity {
 				saveInFile();
 			}
 		});
+
+		/* Clear all the tweets and their data. */
+		Button clearButton = (Button) findViewById(R.id.clear);
+		clearButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) {
+				setResult(RESULT_OK);
+				tweetList.clear();
+                adapter.notifyDataSetChanged();
+				saveInFile();
+			}
+		});
 	}
 
 	@Override
 	protected void onStart() {
-		// TODO Auto-generated method stub
 		super.onStart();
 		loadFromFile();
 		adapter = new ArrayAdapter<Tweet>(this,
@@ -83,11 +92,8 @@ public class LonelyTwitterActivity extends Activity {
 			tweetList = gson.fromJson(in,listType);
 
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
+			/* Create a brand new tweet list if we can't find the file. */
 			tweetList = new ArrayList<Tweet>();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException();
 		}
 	}
 	
@@ -104,11 +110,11 @@ public class LonelyTwitterActivity extends Activity {
 
 			fos.close();
 		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException();
+			/* Rethrow. */
+			throw new RuntimeException(e);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException();
+			/* Rethrow. */
+			throw new RuntimeException(e);
 		}
 	}
 }
