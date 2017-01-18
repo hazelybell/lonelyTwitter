@@ -9,14 +9,14 @@ public class Tweet {
     private Date date;
     private String message;
 
-    public Tweet(Date date, String message){
+    public Tweet(Date date, String message) throws TweetTooLongException {
         this.date = date;
-        this.message = message;
+        this.setMessage(message);
     }
 
-    public Tweet(String message){
+    public Tweet(String message) throws TweetTooLongException {
         this.date = new Date();
-        this.message = message;
+        this.setMessage(message);
     }
 
     public String getMessage() {

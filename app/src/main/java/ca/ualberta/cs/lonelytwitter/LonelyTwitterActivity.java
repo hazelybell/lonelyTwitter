@@ -34,10 +34,10 @@ public class LonelyTwitterActivity extends Activity {
 		Button saveButton = (Button) findViewById(R.id.save);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
-		Tweet tweet = new Tweet("My First Tweet.");
-
 		try {
+			Tweet tweet = new Tweet("My First Tweet.");
 			tweet.setMessage("wao");
+			ImportantTweet importantTweet = new ImportantTweet("Very Important");
 		} catch (TweetTooLongException e) {
 			e.printStackTrace();
 		}
