@@ -16,7 +16,7 @@ public class HappyMood extends Mood {
         return "Good mood";
     }
 
-    public void setMood(String mood){
-        super.setMood(mood);
+    public void setMood(){
+        super.setMood("Good mood");
     }
 }
