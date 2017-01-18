@@ -6,6 +6,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -23,7 +24,7 @@ public class LonelyTwitterActivity extends Activity {
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
-	
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -33,6 +34,31 @@ public class LonelyTwitterActivity extends Activity {
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
+
+
+		Tweet tweet = null;
+		try {
+			tweet = new NormalTweet("a");
+			Tweet tweet2 = new NormalTweet(new Date(),"b");
+			Tweet iptTweet = new ImportantTweet("important");
+			iptTweet.getDate();
+
+
+			NormalTweet nt = new NormalTweet("a message");
+			ArrayList<Tweet> arrayList = new ArrayList<Tweet>();
+			arrayList.add(tweet);
+			arrayList.add(tweet2);
+			arrayList.add(iptTweet);
+		} catch (TweetTooLongException e) {
+			e.printStackTrace();
+		}
+
+		try {
+			tweet.setMessage("message for first tweet");
+		} catch (TweetTooLongException e) {
+			e.printStackTrace();
+		}
+
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
