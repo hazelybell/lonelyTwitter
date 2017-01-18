@@ -14,4 +14,13 @@ public class ImportantTweet extends Tweet {
     public ImportantTweet(String message) throws TweetTooLongException {
         super(message);
     }
+
+    public Boolean isImportant() {
+        return Boolean.TRUE;
+    }
+
+    @Override
+    public String getMessage() {
+        return super.getMessage() + "!!!!";
+    }
 }
