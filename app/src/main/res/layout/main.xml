@@ -24,7 +24,13 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/hello" />
-    
+
+    <Switch
+        android:text="Mood: Are you Happy?"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch1" />
+
     <EditText
         android:id="@+id/body"
         android:layout_width="fill_parent"

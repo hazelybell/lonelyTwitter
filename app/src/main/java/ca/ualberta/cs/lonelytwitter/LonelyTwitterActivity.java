@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Switch;
 
 public class LonelyTwitterActivity extends Activity {
 
@@ -55,7 +56,18 @@ public class LonelyTwitterActivity extends Activity {
 				tweetList.add(normalTweet);
 				tweetList.add(tweet);
 
-				saveInFile(text, new Date(System.currentTimeMillis()));
+				Switch mood = (Switch) findViewById(R.id.switch1);
+				Boolean switch_pos = mood.isChecked();
+				String current_mood;
+				if (switch_pos){
+					 current_mood = "Happy";
+				}else
+				{
+					current_mood = "Mad";
+				}
+
+
+				saveInFile(text, current_mood, new Date(System.currentTimeMillis()));
 				finish();
 
 			}
@@ -93,11 +105,11 @@ public class LonelyTwitterActivity extends Activity {
 		return tweets.toArray(new String[tweets.size()]);
 	}
 	
-	private void saveInFile(String text, Date date) {
+	private void saveInFile(String text, String current_mood, Date date) {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
 					Context.MODE_APPEND);
-			fos.write(new String(date.toString() + " | " + text)
+			fos.write(new String("\n" + date.toString() + " | " + text + " | " + current_mood)
 					.getBytes());
 			fos.close();
 		} catch (FileNotFoundException e) {
