@@ -11,7 +11,7 @@ public class NormalTweet extends Tweet {
         super(date, Message);
     }
 
-    public NormalTweet(String Message) throws TweetTooLongException {
+    public NormalTweet(String Message) {
         super(Message);
     }
 
