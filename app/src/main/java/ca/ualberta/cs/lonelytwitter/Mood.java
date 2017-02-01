@@ -2,6 +2,10 @@ package ca.ualberta.cs.lonelytwitter;
 
 import java.util.Date;
 
+/**
+ * This is a Mood class. It can be used to set a tweets mode
+ */
+
 public abstract class Mood {
     private String mood;
     private Date date;

@@ -9,25 +9,56 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
-import java.nio.Buffer;
 import java.util.ArrayList;
-import java.util.Date;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.Switch;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * This class is the main view of the project <br/> In this class, user interaction and file manipulation
+ * is performed.
+ * All the files are in the form of "json" files that are stored in Emulator accessible from
+ * <pre>
+ *     pres-formatted text: <br/>
+ *     File explorer -> data -> data -> ca.ualberta.cs.lonelytwitter -> files -> file.sav
+ * </pre>
+ * <code> begin <br>
+ * some pseduo code <br>
+ * end </code>
+ * The file name is indicated in the &nbsp &nbsp &nbsp FILENAME constant
+ * <ul>
+ *     <li>item 1</li>
+ *     <li>item 2</li>
+ * </ul>
+ *
+ * <ol>
+ *     <li>item 1</li>
+ *     <li>item 2</li>
+ * </ol>
+ *
+ *
+ * @author fady
+ * @version 1.0
+ * @see  Tweet
+ * @since 0.5
+ */
+
 public class LonelyTwitterActivity extends Activity {
+    /**
+     * This file that all the tweets are saved there. the format of the ifle is JSON
+     * @see #loadFromFile()
+     * @see #saveInFile()
+     */
+
 
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
@@ -86,6 +117,11 @@ public class LonelyTwitterActivity extends Activity {
 		oldTweetsList.setAdapter(adapter);
 	}
 
+    /**
+     * Loads file from
+     * @throws TweetTooLongException if the tweet is too long
+     * @exception FileNotFoundException if the file is not created first
+     */
 	private void loadFromFile() {
 		try {
 			FileInputStream fis = openFileInput(FILENAME);
