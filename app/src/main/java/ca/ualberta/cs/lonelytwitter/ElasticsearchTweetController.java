@@ -20,6 +20,7 @@ public class ElasticsearchTweetController {
 
         @Override
         protected Void doInBackground(NormalTweet... tweets) {
+            //verifySettings();
 
             for (NormalTweet tweet : tweets) {
                 Index index = new Index.Builder(tweet).index("testing").type("tweet").build();
@@ -37,6 +38,28 @@ public class ElasticsearchTweetController {
     }
 
     // TODO we need a function which gets tweets from elastic search
+/*    public static class GetTweetsTask extends AsyncTask<String, Void, ArrayList<NormalTweet>> {
+        @Override
+        protected ArrayList<NormalTweet> doInBackground(String... search_parameters) {
+            verifySettings();
+
+            ArrayList<NormalTweet> tweets = new ArrayList<NormalTweet>();
+
+                // TODO Build the query
+
+            try {
+               // TODO get the results of the query
+            }
+            catch (Exception e) {
+                Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
+            }
+
+            return tweets;
+        }
+    }*/
+
+
+
 
     public static void verifySettings() {
         if (client == null) {
