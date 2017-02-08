@@ -2,22 +2,46 @@ package ca.ualberta.cs.lonelytwitter;
 
 import java.util.Date;
 
+import io.searchbox.annotations.JestId;
 
-/**
- * This is the Tweet class. It implements tweetable
- */
-
-public abstract class Tweet implements Tweetable{
-    private Date date;
+public abstract class Tweet implements Tweetable {
     private String message;
+    private Date date;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    @JestId
+    private String id;
 
     public Tweet(String message){
         this.message = message;
         this.date = new Date();
     }
 
-    public Tweet(Date date, String message){
+    public Tweet(String message, Date date){
+        this.message = message;
         this.date = date;
+    }
+
+    @Override
+    public String toString(){
+        return message;
+    }
+
+    public abstract Boolean isImportant();
+
+
+    public void setMessage(String message) throws TweetTooLongException {
+        if (message.length() > 140){
+            //Do Something!
+            throw new TweetTooLongException();
+        }
         this.message = message;
     }
 
@@ -25,33 +49,11 @@ public abstract class Tweet implements Tweetable{
         this.date = date;
     }
 
-    public void setMessage(String message) throws TweetTooLongException {
-        if(message.length() > 140){
-            throw new TweetTooLongException();
-        }else {
-            this.message = message;
-        }
+    public String getMessage() {
+        return message;
     }
 
     public Date getDate() {
         return date;
     }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public Tweet(){
-        super();
-        this.date = new Date();
-    }
-
-    public abstract Boolean isImportant();
-
-    @Override
-    public  String toString(){
-        return date.toString() + " | " + message + "\n";
-    }
-
-
 }

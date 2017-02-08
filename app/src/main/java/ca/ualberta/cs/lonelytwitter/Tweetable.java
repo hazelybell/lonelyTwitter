@@ -1,17 +1,11 @@
 package ca.ualberta.cs.lonelytwitter;
 
-/**
- * Created by fady on 19/01/17.
- */
 
+import java.util.Date;
 
-/**
- * This is an interface
- *
- */
 public interface Tweetable {
-    String getMessage();
-    void setMessage(String string) throws TweetTooLongException;
+    public String getMessage();
 
+    public Date getDate();
 
 }
