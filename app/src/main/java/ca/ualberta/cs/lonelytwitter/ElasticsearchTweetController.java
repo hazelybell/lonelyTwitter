@@ -20,7 +20,7 @@ public class ElasticsearchTweetController {
 
         @Override
         protected Void doInBackground(NormalTweet... tweets) {
-            //verifySettings();
+            verifySettings();
 
             for (NormalTweet tweet : tweets) {
                 Index index = new Index.Builder(tweet).index("testing").type("tweet").build();
