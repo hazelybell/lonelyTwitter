@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/home/fady/.gradle/caches/modules-2/files-2.1/com.google.code.gson/gson/2.8.0/c4ba5371a29ac9b2ad6129b1d39ea38750043eff/gson-2.8.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c4ba5371a29ac9b2ad6129b1d39ea38750043eff">
+        <dex dex="/home/fady/Documents/school/cmput301/git/lonelyTwitter/app/build/intermediates/pre-dexed/debug/gson-2.8.0-1646456720ad763ebbae04c7fa5959a4298733f1.jar" />
+    </item>
+
+</items>
