@@ -8,10 +8,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -40,7 +42,30 @@ public class LonelyTwitterActivity extends Activity {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
 				saveInFile(text, new Date(System.currentTimeMillis()));
-				finish();
+
+                ArrayList<Mood> moodlist1 = new ArrayList<Mood>();
+                moodlist1.add(new SadMood());
+                moodlist1.add(new HappyMood());
+
+                ArrayList<Mood> moodlist2 = new ArrayList<Mood>();
+                moodlist1.add(new SadMood());
+                moodlist1.add(new HappyMood());
+
+                Tweet tweet = new ImportantTweet("", moodlist1);
+                Tweet tweet2 = new NormalTweet("Hi", moodlist2);
+				try {
+					tweet.setMessage("Hello");
+				} catch (TweetTooLongException e) {
+                    // e.printStackTrace();
+				}
+
+				Tweetable tweet3 = new ImportantTweet(" ", moodlist1);
+				ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
+                tweetList.add(tweet);
+                tweetList.add(tweet2);
+//				  Log.d("", "The isImportant method returns " + tweet.isImportant());
+//                Log.d("", "The isImportant method returns " + tweet2.isImportant());
+				// finish();
 
 			}
 		});
