@@ -43,4 +43,19 @@
         android:layout_height="wrap_content"
         android:text="@string/save" />
 
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="434dp"
+        android:layout_height="wrap_content"
+        android:text="Choose a Mood "
+        android:textSize="36sp" />
+
+    <Spinner
+        android:id="@+id/spinner1"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:entries="@array/languages"
+        />
+
+
 </LinearLayout>

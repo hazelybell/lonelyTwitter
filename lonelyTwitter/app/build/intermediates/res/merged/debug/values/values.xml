@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/afs/ualberta.ca/home/g/u/guanfang/Desktop/lonelyTwitter/app/src/main/res/values/strings.xml -->
+    <eat-comment/>
+    <string name="app_name">LonelyTwitter</string>
+    <string name="clear">Clear</string>
+    <string name="hello">Joshua said:</string>
+    <string name="save">Save</string>
+</resources>
