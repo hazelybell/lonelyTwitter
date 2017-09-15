@@ -13,9 +13,9 @@ public abstract class Mood{
 		this.date = date;
 	}
 
-	public abstract Date getDate();
+	public Date getDate(){ return date; }
 
-	public abstract void setDate(Date date);
+	public void setDate(Date date){ this.date = date; }
 
 	public abstract String toString();
 }

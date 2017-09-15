@@ -45,16 +45,26 @@ public class LonelyTwitterActivity extends Activity {
 				} catch (TweetTooLongException e) {
 					//e.printStackTrace();
 				}
+
+				tweet.addMood(new MoodHappy());
+				tweet.addMood(new MoodSad(new Date()));
+				tweet1.addMood(new MoodSad());
+
 				ArrayList<Tweet> tweets = new ArrayList<Tweet>();
 				tweets.add(tweet);
 				tweets.add(tweet1);
 				for (Tweet t : tweets){
 					Log.d("Some Tag", "The isImportant method in this object returned "+t.isImportant());
+					for (Mood m : t.getMoods()){
+						Log.d("Mood on tweet: ", m.toString());
+					}
 				}
 
 				ArrayList<Tweetable> tweetables = new ArrayList<Tweetable>();
 				tweetables.add(tweet);
 				tweetables.add(tweet1);
+
+
 
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
