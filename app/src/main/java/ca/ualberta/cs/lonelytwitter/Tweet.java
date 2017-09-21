@@ -41,5 +41,9 @@ public abstract class Tweet {
         return this.date;
     }
 
-
+    // Lab 3 Code
+    @Override
+    public String toString(){
+        return date.toString() + " | " + message;
+    }
 }
