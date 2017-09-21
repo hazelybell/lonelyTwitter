@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -19,12 +21,19 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 public class LonelyTwitterActivity extends Activity {
 
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
-	
+
+	//Lab 3 Code
+	private ArrayList<Tweet> tweets = new ArrayList<Tweet>();
+	private ArrayAdapter<Tweet> adapter;
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -43,7 +52,7 @@ public class LonelyTwitterActivity extends Activity {
 
 
 				// Lab 2 Code
-				NormalTweet newTweet = new NormalTweet("Hello");
+				/*NormalTweet newTweet = new NormalTweet("Hello");
 				ImportantTweet newTweet2 = new ImportantTweet("Hello", new Date());
 
 				newTweet2.getDate();
@@ -60,7 +69,14 @@ public class LonelyTwitterActivity extends Activity {
 				tweetList.add(newTweet);
 				tweetList.add(newTweet2);
 
-				saveInFile(text, new Date(System.currentTimeMillis()));
+				saveInFile(text, new Date(System.currentTimeMillis()));*/
+
+				// Lab 3 Code
+				tweets.add(new NormalTweet(text));
+				adapter.notifyDataSetChanged();
+
+				saveInFile();
+
 				//finish();
 
 			}
@@ -71,39 +87,43 @@ public class LonelyTwitterActivity extends Activity {
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
-		String[] tweets = loadFromFile();
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				R.layout.list_item, tweets);
+
+		// Lab 3 Code
+		loadFromFile();
+		adapter = new ArrayAdapter<Tweet>(this, R.layout.list_item, tweets);
+
 		oldTweetsList.setAdapter(adapter);
 	}
 
-	private String[] loadFromFile() {
-		ArrayList<String> tweets = new ArrayList<String>();
+	private void loadFromFile() {
 		try {
 			FileInputStream fis = openFileInput(FILENAME);
 			BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-			String line = in.readLine();
-			while (line != null) {
-				tweets.add(line);
-				line = in.readLine();
-			}
+
+			// Lab 3 Code
+			Gson gson = new Gson();
+			Type listType = new TypeToken<ArrayList<NormalTweet>>() {}.getType();
+			tweets = gson.fromJson(in, listType);
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			tweets = new ArrayList<Tweet>();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
-		return tweets.toArray(new String[tweets.size()]);
 	}
 	
-	private void saveInFile(String text, Date date) {
+	private void saveInFile() {
 		try {
-			FileOutputStream fos = openFileOutput(FILENAME,
-					Context.MODE_APPEND);
-			fos.write(new String(date.toString() + " | " + text)
-					.getBytes());
+			FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
+
+			// Lab 3 Code
+			OutputStreamWriter writer = new OutputStreamWriter(fos);
+			Gson gson = new Gson();
+			gson.toJson(tweets, writer);
+			writer.flush();
+
 			fos.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
