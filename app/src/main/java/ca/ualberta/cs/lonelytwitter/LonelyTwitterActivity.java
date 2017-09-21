@@ -1,12 +1,15 @@
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Date;
@@ -42,8 +45,10 @@ public class LonelyTwitterActivity extends Activity {
 
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
+		Button clearButton = (Button) findViewById(R.id.clear);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
+		// Save Button
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -81,6 +86,19 @@ public class LonelyTwitterActivity extends Activity {
 
 			}
 		});
+
+		// Clear Button
+		clearButton.setOnClickListener(new View.OnClickListener() {
+
+			public void onClick(View v) {
+				// Clear tweet list then rewrite file (empty)
+				tweets.clear();
+				saveInFile();
+
+				// Update display
+				oldTweetsList.setAdapter(adapter);
+			}
+		});
 	}
 
 	@Override
@@ -91,7 +109,6 @@ public class LonelyTwitterActivity extends Activity {
 		// Lab 3 Code
 		loadFromFile();
 		adapter = new ArrayAdapter<Tweet>(this, R.layout.list_item, tweets);
-
 		oldTweetsList.setAdapter(adapter);
 	}
 
@@ -108,10 +125,11 @@ public class LonelyTwitterActivity extends Activity {
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			tweets = new ArrayList<Tweet>();
-		} catch (IOException e) {
+		}
+		/*catch (IOException e) {
 			// TODO Auto-generated catch block
 			throw new RuntimeException(e);
-		}
+		}*/
 	}
 	
 	private void saveInFile() {
@@ -127,10 +145,10 @@ public class LonelyTwitterActivity extends Activity {
 			fos.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 	}
 }
