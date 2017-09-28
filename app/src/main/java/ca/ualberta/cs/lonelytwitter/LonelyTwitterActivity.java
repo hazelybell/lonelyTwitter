@@ -1,3 +1,15 @@
+/* LonelyTwitterActivity
+ *
+ * Version 1.0
+ *
+ * September 27, 2017
+ *
+ * Copyright (c) 2017 Team X, CMPUT301, University of Alberta - All Rights Reserved.
+ * You may use, distribute, or modify this code under terms and conditions of the Code of Student Behavior at University of Alberta.
+ * You can find a cope of the license in this project. Otherwise please contact contact@abc.ca
+ */
+
+
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
@@ -24,16 +36,27 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * Describes actions (of buttons) of LonelyTwitter
+ * Created by hrai on 9/20/17
+ * @author team X
+ * @version 1.5
+ * @see Tweet
+ * @since 1.0
+ */
+
 public class LonelyTwitterActivity extends Activity {
 
-	private static final String FILENAME = "file.sav";
+    private static final String FILENAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
 
     private ArrayList<Tweet> tweets = new ArrayList<Tweet>();
     private ArrayAdapter<Tweet> adapter;
 	
-	/** Called when the activity is first created. */
+	/**
+     * Called when the activity is first created.
+     */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -44,6 +67,9 @@ public class LonelyTwitterActivity extends Activity {
         Button clearButton = (Button) findViewById(R.id.clear);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
+        /**
+         * Clears all tweets currently displayed
+         */
         clearButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v) {
                 //setResult(RESULT_OK);
@@ -53,7 +79,9 @@ public class LonelyTwitterActivity extends Activity {
             }}
             );
 
-
+        /**
+         * Saves alongside all previous tweets
+         */
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
@@ -67,6 +95,9 @@ public class LonelyTwitterActivity extends Activity {
 		});
 	}
 
+    /**
+     * Called when the activity starts
+     */
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
@@ -83,15 +114,6 @@ public class LonelyTwitterActivity extends Activity {
             Gson gson = new Gson();
             Type listType = new TypeToken<ArrayList<NormalTweet>>() {}.getType();
             tweets = gson.fromJson(in, listType);
-
-
-            /*
-			String line = in.readLine();
-			while (line != null) {
-				tweets.add(line);
-				line = in.readLine();
-			*/
-			//}
 
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
