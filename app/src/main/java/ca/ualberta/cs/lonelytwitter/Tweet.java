@@ -49,7 +49,7 @@ public abstract class Tweet implements Tweetable {
     }
 
 
-    public abstract Boolean isImportant();
+    //public abstract Boolean isImportant();
 
     public String getMessage(){
         return message;
@@ -71,7 +71,7 @@ public abstract class Tweet implements Tweetable {
         }
     }
 
-    public String getMessage() { return this.message;}
+    //public String getMessage() { return this.message;}
 
     public Date getDate() {
         return date;
