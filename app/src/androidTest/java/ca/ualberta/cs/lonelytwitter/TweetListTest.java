@@ -46,14 +46,15 @@ public class TweetListTest extends ActivityInstrumentationTestCase2{
         assertEquals(returnedTweet.getMessage(), tweet.getMessage());
     }
 
-    public void testGetTweets() {
+    public void testGetTweets() throws InterruptedException {
         TweetList list = new TweetList();
         Tweet tweet = new NormalTweet("test");
         Tweet tweet2 = new NormalTweet("test2");
         list.add(tweet);
+        TimeUnit.SECONDS.sleep(3);
         list.add(tweet2);
         list.getTweets();
-        assertTrue(list.getTweet(0).getDate().before(list.getTweet(1).getDate()));
+        assertTrue(list.getTweet(1).getDate().compareTo(list.getTweet(0).getDate())==0);
     }
 
 
