@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\cryst\AndroidStudioProjects\lonelyTwitter\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\18.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="8f11f56e350eacabf2273f646d981356eea0ed77">
+        <dex dex="C:\Users\cryst\AndroidStudioProjects\lonelyTwitter\app\build\intermediates\pre-dexed\debug\classes-994ea08d91ec3b7166868d4e33f90db1b8353d84.jar" />
+    </item>
+    <item
+        jar="C:\Users\cryst\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-v4\18.0.0\support-v4-18.0.0.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="44ec51e9d395a47aab135e5e1b556c0007442156">
+        <dex dex="C:\Users\cryst\AndroidStudioProjects\lonelyTwitter\app\build\intermediates\pre-dexed\debug\support-v4-18.0.0-3c1e01cfc68f7b17d49094e75acd046378531609.jar" />
+    </item>
+    <item
+        jar="C:\Users\cryst\AndroidStudioProjects\lonelyTwitter\app\src\include\jest-droid-2.0.1-SNAPSHOT.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="e1199e84d8d3907b8262330dd6976ce04d37f6de">
+        <dex dex="C:\Users\cryst\AndroidStudioProjects\lonelyTwitter\app\build\intermediates\pre-dexed\debug\jest-droid-2.0.1-SNAPSHOT-159d792892e3b2cd06524ae8550cf656c82f8204.jar" />
+    </item>
+    <item
+        jar="C:\Users\cryst\.gradle\caches\modules-2\files-2.1\com.jayway.android.robotium\robotium-solo\5.6.3\94ec2d7b23be9817d92905cc09124aecfc46d28c\robotium-solo-5.6.3.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="94ec2d7b23be9817d92905cc09124aecfc46d28c">
+        <dex dex="C:\Users\cryst\AndroidStudioProjects\lonelyTwitter\app\build\intermediates\pre-dexed\debug\robotium-solo-5.6.3-cd810c15411a623b4e90536341f22798fee9b521.jar" />
+    </item>
+
+</items>
