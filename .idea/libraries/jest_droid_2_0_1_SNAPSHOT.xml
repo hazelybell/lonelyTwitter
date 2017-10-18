@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="jest-droid-2.0.1-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/app/src/include/jest-droid-2.0.1-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
