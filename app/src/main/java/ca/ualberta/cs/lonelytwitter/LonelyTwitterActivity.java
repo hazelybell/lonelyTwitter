@@ -13,8 +13,10 @@ import java.util.Date;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -30,6 +32,7 @@ public class LonelyTwitterActivity extends Activity {
 	private ListView oldTweetsList;
 	private ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
 	private ArrayAdapter<Tweet> adapter;
+	private LonelyTwitterActivity activity = this;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,7 @@ public class LonelyTwitterActivity extends Activity {
 
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
+		Button clearButton = (Button) findViewById(R.id.clear);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +53,22 @@ public class LonelyTwitterActivity extends Activity {
 				tweetList.add(newTweet);
 				adapter.notifyDataSetChanged();
 				saveInFile();
+			}
+		});
+		clearButton.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View view) {
+				setResult(RESULT_OK);
+				tweetList.clear();
+				deleteFile(FILENAME);
+				adapter.notifyDataSetChanged();
+			}
+		});
+
+		oldTweetsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+			public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+				Intent intent = new Intent(activity, EditTweetActivity.class);
+				intent.putExtra("Tweet", tweetList.get(i));
+				startActivity(intent);
 			}
 		});
 	}
@@ -97,5 +117,9 @@ public class LonelyTwitterActivity extends Activity {
 			// TODO Auto-generated catch block
 			throw new RuntimeException();
 		}
+	}
+
+	public ListView getOldTweetsList() {
+		return oldTweetsList;
 	}
 }
