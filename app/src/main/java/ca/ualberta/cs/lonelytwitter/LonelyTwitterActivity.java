@@ -39,6 +39,28 @@ public class LonelyTwitterActivity extends Activity {
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
+
+				NormalTweet newTweet = new NormalTweet(text);
+				NormalTweet newTweet2 = new NormalTweet(text, new Date());
+				ImportantTweet impTweet = new ImportantTweet("This is an important tweet");
+				NormalTweet normTweet = new NormalTweet("This is a normal tweet");
+
+				ArrayList<Tweet> allTweets = new ArrayList<Tweet>();
+				allTweets.add(newTweet);
+				allTweets.add(newTweet2);
+				allTweets.add(impTweet);
+				allTweets.add(normTweet);
+
+				
+
+				try{
+					newTweet.setMessage("This is modified");
+				}
+				catch(Exception e){
+					// Show an error message
+					e.printStackTrace();
+				}
+
 				saveInFile(text, new Date(System.currentTimeMillis()));
 				finish();
 
