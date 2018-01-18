@@ -51,7 +51,7 @@ public class LonelyTwitterActivity extends Activity {
 				allTweets.add(impTweet);
 				allTweets.add(normTweet);
 
-				
+
 
 				try{
 					newTweet.setMessage("This is modified");
