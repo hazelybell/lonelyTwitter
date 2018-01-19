@@ -8,42 +8,42 @@ import java.util.Date;
 
 public abstract class Tweet implements Tweetable{
 
-    private String mood;
+    private String message;
     private Date date;
 
     Tweet(){
 
     }
-
-    public Tweet(String mood){
-        this.mood = mood;
+    public Tweet(String message){
+        this.message = message;
     }
 
-    public Tweet(String mood, Date date){
-        this.mood = mood;
+    public Tweet(String message, Date date){
+        this.message = message;
         this.date = date;
     }
 
     public Date getDate(){
         return date;
+
     }
 
-    public String getMood(){
-        return mood;
+    public String getMessage(){
+        return message;
     }
 
-    public void setMood(String mood) throws TweetTooLongException{
-        if(mood.length() > 160){
+    public void setMessage(String message) throws TweetTooLongException{
+        if(message.length() > 160){
             // throw an error
             throw new TweetTooLongException();
         }
-        this.mood = mood;
+
+        this.message = message;
     }
 
     public void setDate(Date date){
         this.date = date;
     }
 
-    public abstract boolean isMood2();
-
+    public abstract boolean isImportant();
 }

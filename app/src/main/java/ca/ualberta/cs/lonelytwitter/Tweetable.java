@@ -5,6 +5,6 @@ package ca.ualberta.cs.lonelytwitter;
  */
 
 public interface Tweetable {
-    public String getMood();
-    public void setMood(String mood) throws TweetTooLongException;
+    public String getMessage();
+    public void setMessage(String message) throws TweetTooLongException;
 }

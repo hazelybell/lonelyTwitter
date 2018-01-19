@@ -6,7 +6,7 @@ package ca.ualberta.cs.lonelytwitter;
 
 import java.util.Date;
 
-public class ImportantTweet extends Tweet2{
+public class ImportantTweet extends Tweet{
 
     ImportantTweet(String message){
         super(message);
@@ -22,3 +22,4 @@ public class ImportantTweet extends Tweet2{
         return true;
     }
 }
+
