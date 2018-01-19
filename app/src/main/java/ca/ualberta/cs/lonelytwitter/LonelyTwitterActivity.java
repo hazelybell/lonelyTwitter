@@ -37,8 +37,73 @@ public class LonelyTwitterActivity extends Activity {
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
+
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
+
+
+                NormalTweet newtweet = new NormalTweet(text);
+                NormalTweet newtweet2 = new NormalTweet(text, new Date());
+
+                ImportantTweet imptweet = new ImportantTweet("this is a important tweet");
+
+                NormalTweet normtweet = new NormalTweet("this is a normal tweet");
+
+                ArrayList<Tweet2> alltweets = new ArrayList<Tweet2>();
+                alltweets.add(newtweet);
+                alltweets.add(newtweet2);
+                alltweets.add(imptweet);
+                alltweets.add(normtweet);
+
+                // write it to the log , just to check outputs
+                //Log.v("Test", "Log error 1");
+
+
+                //try{
+                //    newtweet.setMessage("Message too long");
+
+                //}
+                //catch(Exception e){
+                    // Show a error message
+                //    e.printStackTrace();
+                //}
+
+
+
+
+
+
+
+
+				////////////////////////////
+				Mood1 newmood = new Mood1(text);
+				Mood1 newmood2 = new Mood1(text, new Date());
+
+				Mood2 secondmood = new Mood2("this is mood 2");
+				Mood1 firstmood = new Mood1("this is mood 1");
+
+				ArrayList<Tweet> allmoods = new ArrayList<Tweet>();
+				allmoods.add(newmood);
+				allmoods.add(newmood2);
+				allmoods.add(secondmood);
+				allmoods.add(firstmood);
+
+				// write it to the log, just to check outputs
+				//Log.v("Test", "Log error 1");
+
+				//try{
+				//	newmood.setMood("Mood too long");
+				//}
+				//catch(Exception e){
+					// show a error message
+				//	e.printStackTrack();
+				//}
+
+                ////////////////////////////
+
+
+
+
 				saveInFile(text, new Date(System.currentTimeMillis()));
 				finish();
 
