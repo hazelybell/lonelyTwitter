@@ -26,7 +26,7 @@ public class LonelyTwitterActivity extends Activity {
     private static final String FILENAME = "file.sav";
     private EditText bodyText;
     private ListView oldTweetsList;
-    /////////////
+    /////////////////
     Spinner spinner;
     ArrayAdapter<CharSequence> adapter;
     /////////////////
@@ -37,6 +37,7 @@ public class LonelyTwitterActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
         /////////////////
+        // my code added:
         spinner = (Spinner)findViewById(R.id.setMood);
         adapter = ArrayAdapter.createFromResource(this,R.array.mood_list,android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -63,6 +64,8 @@ public class LonelyTwitterActivity extends Activity {
                 setResult(RESULT_OK);
                 String text = bodyText.getText().toString();
 
+                ///////////////////////////////////////////////////////
+                // my code added:
                 String currentMood = new String();
                 MoodHappy MoodHappy = new MoodHappy();
                 MoodSad MoodSad = new MoodSad();
@@ -79,7 +82,7 @@ public class LonelyTwitterActivity extends Activity {
                 }
 
                 String newtext = "mood: "+currentMood+" |"+text;
-
+                ///////////////////////////////////////////////////////
 
 
 
@@ -96,12 +99,7 @@ public class LonelyTwitterActivity extends Activity {
                 alltweets.add(imptweet);
                 alltweets.add(normtweet);
 
-
-
-
-
-                // write it to the log , just to check outputs
-                //Log.v("Test", "Log error 1");
+                
 
 
                 try{
@@ -115,9 +113,11 @@ public class LonelyTwitterActivity extends Activity {
 
 
 
-
+                ///////////////////////////////////////////////////////
+                // my code modified:
                 saveInFile(newtext, new Date(System.currentTimeMillis()));
                 finish();
+                ///////////////////////////////////////////////////////
 
             }
         });
