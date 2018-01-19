@@ -59,14 +59,14 @@ public class LonelyTwitterActivity extends Activity {
                 //Log.v("Test", "Log error 1");
 
 
-                //try{
-                //    newtweet.setMessage("Message too long");
+                try{
+                    newtweet.setMessage("Message too long");
 
-                //}
-                //catch(Exception e){
+                }
+                catch(Exception e){
                     // Show a error message
-                //    e.printStackTrace();
-                //}
+                    e.printStackTrace();
+                }
 
 
 
@@ -91,13 +91,13 @@ public class LonelyTwitterActivity extends Activity {
 				// write it to the log, just to check outputs
 				//Log.v("Test", "Log error 1");
 
-				//try{
-				//	newmood.setMood("Mood too long");
-				//}
-				//catch(Exception e){
+				try{
+					newmood.setMood("Mood too long");
+				}
+				catch(Exception e){
 					// show a error message
-				//	e.printStackTrack();
-				//}
+					e.printStackTrace();
+				}
 
                 ////////////////////////////
 
