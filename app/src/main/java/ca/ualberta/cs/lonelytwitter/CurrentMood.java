@@ -8,42 +8,5 @@ import java.util.TooManyListenersException;
  */
 
 public abstract class CurrentMood {
-
-    private String mood;
-    private Date date;  //access modifier
-
-    public CurrentMood(String mood){
-        this.mood = mood;
-        this.date = new Date();
-    }
-
-    public CurrentMood(String mood,Date date){
-        this.mood =mood;
-        this.date=date;
-    }
-
-    public void setDate(Date date){
-        this.date=date;
-    }
-
-    public void setMood(String mood) throws TweetTooLongException{
-        if (mood.length() <= 140){
-            this.mood=mood;
-        }
-        else{
-            throw new TweetTooLongException();
-        }
-    }
-
-    public Date getDate(){
-        return date;
-    }
-
-    public String getMood(){
-        return mood;
-    }
-
-    public abstract Boolean isHappy();
-
     public abstract String getCurrentMood();
 }
