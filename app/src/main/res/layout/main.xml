@@ -15,8 +15,9 @@
         android:id="@+id/oldTweetsList"
         android:layout_width="match_parent"
         android:layout_height="300dp"
+        android:layout_above="@+id/body"
         android:layout_alignParentStart="true"
-        android:layout_below="@+id/oldTweetsTitle"
+        android:layout_marginBottom="147dp"
         android:layout_weight="1"
         android:scrollbars="vertical">
 
