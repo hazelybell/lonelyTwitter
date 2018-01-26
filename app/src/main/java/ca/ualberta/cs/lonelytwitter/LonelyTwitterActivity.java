@@ -52,13 +52,7 @@ public class LonelyTwitterActivity extends Activity {
         //initialize the oldTweetList
         oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
 
-        clearButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                tweetList.clear();
-                adapter.notifyDataSetChanged();
-                saveInFile();
-            }
-        });
+
 
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -79,25 +73,29 @@ public class LonelyTwitterActivity extends Activity {
                     currentMood=MoodSad.getCurrentMood();
                 }
 
-                String newtext = "mood: "+currentMood+" |"+text;
+                String newtext = "mood: "+currentMood+" | "+text;
 
-                setResult(RESULT_OK);
-
-                NormalTweet tweet = new NormalTweet(text);
+                NormalTweet tweet = new NormalTweet(newtext);
                 tweetList.add(tweet);
                 adapter.notifyDataSetChanged();
                 saveInFile();
 
 
+            }
+        });
 
-
+        clearButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                tweetList.clear();
+                adapter.notifyDataSetChanged();
+                saveInFile();
             }
         });
     }
 
     @Override
     protected void onStart() {
-        //9TODO Auto-generated method stub
+        // TODO Auto-generated method stub
         super.onStart();
         //String[] tweets = loadFromFile();
         loadFromFile();
@@ -123,9 +121,13 @@ public class LonelyTwitterActivity extends Activity {
             tweetList = gson.fromJson(in,listType);
 
         } catch (FileNotFoundException e) {
-            //3TODO Auto-generated catch block
+            // TODO Auto-generated catch block
             //e.printStackTrace();
             tweetList = new ArrayList<Tweet>();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            //e.printStackTrace();
+            throw new RuntimeException();
         }
         //return tweets.toArray(new String[tweets.size()]);
     }
@@ -140,11 +142,11 @@ public class LonelyTwitterActivity extends Activity {
             out.flush();
             fos.close();
         } catch (FileNotFoundException e) {
-            // 9TODO Auto-generated catch block
+            // TODO Auto-generated catch block
             //e.printStackTrace();
             throw new RuntimeException();
         } catch (IOException e) {
-            // 9TODO Auto-generated catch block
+            // TODO Auto-generated catch block
             //e.printStackTrace();
             throw new RuntimeException();
         }
