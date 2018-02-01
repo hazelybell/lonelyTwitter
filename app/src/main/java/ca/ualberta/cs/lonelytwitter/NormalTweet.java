@@ -1,19 +1,39 @@
 package ca.ualberta.cs.lonelytwitter;
 
-/**
- * Created by critt on 2018-01-17.
- */
-
 import java.util.Date;
+
+/**
+ * Represents a normal tweet
+ *
+ * @author chris
+ * @version 1.5
+ */
 public class NormalTweet extends Tweet {
-    NormalTweet(String message){
+    /**
+     * Constructs a normal tweet object
+     *
+     * @param message tweet message
+     * @throws TweetTooLongException thrown if tweet exceeds 140 characters
+     */
+    NormalTweet(String message) throws TweetTooLongException {
         super(message);
     }
 
-    NormalTweet(String message, Date date){
+    /**
+     * Constructs a normal tweet object
+     * @param message tweet message
+     * @param date tweet date
+     * @throws TweetTooLongException thrown if tweet exceeds 140 characters
+     */
+    NormalTweet(String message, Date date) throws TweetTooLongException {
         super(message, date);
     }
 
+    /**
+     * Check if the tweet is important
+     *
+     * @return tweet importance
+     */
     @Override
     public boolean isImportant(){
         return false;

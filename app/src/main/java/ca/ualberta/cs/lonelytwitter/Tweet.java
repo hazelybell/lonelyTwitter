@@ -26,11 +26,15 @@ public abstract class Tweet implements Tweetable{
     private ArrayList<Mood> moods = new ArrayList<Mood>();
 
     /**
-     * Constructs a tweet object, without a date
+     * Constructs a tweet object.
      *
      * @param message tweet message
+     * @throws TweetTooLongException thrown if tweet exceeds 140 characters
      */
-    Tweet(String message) {
+    Tweet(String message) throws TweetTooLongException{
+        if (message.length() > 140) {
+            throw new TweetTooLongException();
+        }
         this.message = message;
     }
 
@@ -39,16 +43,30 @@ public abstract class Tweet implements Tweetable{
      *
      * @param message tweet message
      * @param date tweet date
+     * @throws TweetTooLongException thrown if tweet exceeds 140 characters
      */
-    Tweet(String message, Date date) {
+    Tweet(String message, Date date) throws TweetTooLongException{
+        if (message.length() > 140) {
+            throw new TweetTooLongException();
+        }
         this.message = message;
         this.date = date;
     }
 
+    /**
+     * Gets the tweet date
+     *
+     * @return returns the tweet date
+     */
     public Date getDate() {
         return date;
     }
 
+    /**
+     * Gets the tweet message
+     *
+     * @return returns the tweet message
+     */
     public String getMessage() {
         return message;
     }
@@ -60,23 +78,34 @@ public abstract class Tweet implements Tweetable{
      * @throws TweetTooLongException thrown if tweet exceeds 140 characters
      */
     public void setMessage(String message) throws TweetTooLongException {
-        if (message.length() > 160) {
+        if (message.length() > 140) {
             throw new TweetTooLongException();
         }
         this.message = message;
     }
 
+    /**
+     * Sets the tweet date.
+     *
+     * @param date tweet date
+     */
     public void setDate(Date date) {
         this.date = date;
     }
 
+    /**
+     * Adds a tweet mood
+     *
+     * @param mood tweet mood
+     */
     public void addMood(Mood mood){
         this.moods.add(mood);
     }
 
+    /**
+     * Checks if the tweet is important
+     *
+     * @return
+     */
     public abstract boolean isImportant();
-    @Override
-    public String toString(){
-        return message;
-    }
 }
