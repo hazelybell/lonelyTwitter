@@ -7,6 +7,7 @@ import java.util.Date;
  *
  * @author chris
  * @version 1.5
+ * @see Tweet
  */
 public class NormalTweet extends Tweet {
     /**
