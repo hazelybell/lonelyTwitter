@@ -1,46 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
 
     <TextView
         android:id="@+id/oldTweetsTitle"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="My old tweets" />
 
     <ListView
         android:id="@+id/oldTweetsList"
-        android:layout_width="fill_parent"
-        android:layout_height="263dp"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:layout_above="@+id/body"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="147dp"
         android:layout_weight="1"
-        android:scrollbars="vertical" >
+        android:scrollbars="vertical">
 
     </ListView>
 
     <TextView
         android:id="@+id/hello"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/clear"
+        android:layout_alignParentStart="true"
         android:text="@string/hello" />
-    
+
     <EditText
         android:id="@+id/body"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="horizontal" />
+        android:layout_alignBaseline="@+id/hello"
+        android:layout_alignBottom="@+id/hello"
+        android:layout_toEndOf="@+id/hello"
+        android:ems="10"
+        android:inputType="textPersonName" />
 
     <Button
         android:id="@+id/clear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/save"
+        android:layout_alignEnd="@+id/setMood"
         android:text="@string/clear" />
 
     <Button
         android:id="@+id/save"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/setMoodText"
+        android:layout_alignEnd="@+id/setMood"
         android:text="@string/save" />
 
-</LinearLayout>
+    <TextView
+        android:id="@+id/setMoodText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/setMood"
+        android:text="@string/setMoodText"
+        tools:textSize="24sp" />
+
+    <Spinner
+        android:id="@+id/setMood"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/setMoodText" />
+
+
+
+</RelativeLayout>

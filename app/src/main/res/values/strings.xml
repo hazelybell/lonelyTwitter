@@ -5,5 +5,9 @@
     <string name="app_name">LonelyTwitter</string>
     <string name="save">Save</string>
     <string name="clear">Clear</string>
-    
+    <string name="setMoodText">set Mood</string>
+    <string-array name="mood_list">
+        <item>Happy</item>
+        <item>Sad</item>
+    </string-array>
 </resources>
