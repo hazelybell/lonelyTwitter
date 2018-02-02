@@ -6,11 +6,26 @@ package ca.ualberta.cs.lonelytwitter;
 
 import java.util.Date;
 
+/**
+ * Represents a tweet
+ *
+ * @author geng1
+ * @version 1.5
+ * @see NormalTweet
+ * @see ImportantTweet
+ *
+ */
+
 public abstract class Tweet implements Tweetable{
 
     private String message;
     private Date date;
-
+    /**
+     * Constructs a tweet object.
+     *
+     * @author message tweet message
+     *
+     */
     Tweet(){
 
     }
@@ -46,4 +61,9 @@ public abstract class Tweet implements Tweetable{
     }
 
     public abstract boolean isImportant();
+
+    @Override
+    public String toString() {
+        return date.toString() + " | " + message;
+    }
 }

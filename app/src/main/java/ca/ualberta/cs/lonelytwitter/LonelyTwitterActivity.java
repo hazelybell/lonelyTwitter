@@ -109,27 +109,18 @@ public class LonelyTwitterActivity extends Activity {
         try {
             FileInputStream fis = openFileInput(FILENAME);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-            //String line = in.readLine();
-            //while (line != null) {
-            //    tweets.add(line);
-            //    line = in.readLine();
-            //}
             Gson gson = new Gson();
             // Taken from https://stackoverflow.com/questions/12384064/gson-convert-from-json-to-a-typed-arraylistt
             // 2018-01-26
             Type listType = new TypeToken<ArrayList<NormalTweet>>(){}.getType();
             tweetList = gson.fromJson(in,listType);
 
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            //e.printStackTrace();
+        } catch (FileNotFoundException e){
             tweetList = new ArrayList<Tweet>();
-        } catch (IOException e) {
+        }catch (IOException e) {
             // TODO Auto-generated catch block
-            //e.printStackTrace();
             throw new RuntimeException();
         }
-        //return tweets.toArray(new String[tweets.size()]);
     }
 
     private void saveInFile() {
