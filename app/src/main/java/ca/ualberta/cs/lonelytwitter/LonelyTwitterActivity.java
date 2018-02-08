@@ -48,7 +48,12 @@ public class LonelyTwitterActivity extends Activity {
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
-				Tweet newtweet = new NormalTweet(text);
+				Tweet newtweet = null;
+				try {
+					newtweet = new NormalTweet(text);
+				} catch (TweetTooLongException e) {
+					e.printStackTrace();
+				}
 				tweetlist.add(newtweet);
 				adapter.notifyDataSetChanged();
 				saveInFile();
@@ -109,6 +114,6 @@ public class LonelyTwitterActivity extends Activity {
 
 	protected void onDestroy(){
 		super.onDestroy();
-		Log.i("In Destroy meethod", "The app is closing");
+		Log.i("In Destroy method", "The app is closing");
 	}
 }
