@@ -33,16 +33,12 @@ public class ElasticsearchTweetController {
                 try {
                     // where is the client?
                     DocumentResult result = client.execute(index);
-                    if(result.isSucceeded())
-                    {
+                    if (result.isSucceeded()) {
                         tweet.setId(result.getId());
+                    } else {
+                        Log.i("Error", "Elasticsearch was not able to add the tweet");
                     }
-                    else
-                    {
-                        Log.i("Error","Elasticsearch was not able to add the tweet");
-                    }
-                }
-                catch (Exception e) {
+                } catch (Exception e) {
                     Log.i("Error", "The application failed to build and send the tweets");
                 }
 
@@ -59,31 +55,24 @@ public class ElasticsearchTweetController {
 
             ArrayList<NormalTweet> tweets = new ArrayList<NormalTweet>();
 
-                // TODO Build the query
+            // TODO Build the query
             Search search = new Search.Builder(search_parameters[0]).addIndex("testing").addType("tweet").build();
             try {
-               // TODO get the results of the query
+                // TODO get the results of the query
                 SearchResult result = client.execute(search);
-                if(result.isSucceeded())
-                {
+                if (result.isSucceeded()) {
                     List<NormalTweet> foundTweet = result.getSourceAsObjectList(NormalTweet.class);
                     tweets.addAll(foundTweet);
-                }
-                else
-                {
+                } else {
                     Log.i("Error", "Something bad happened =");
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 Log.i("Error", "Something went wrong when we tried to communicate with the elasticsearch server!");
             }
 
             return tweets;
         }
     }
-
-
-
 
     public static void verifySettings() {
         if (client == null) {

@@ -14,6 +14,7 @@ import java.util.Date;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -64,8 +65,17 @@ public class LonelyTwitterActivity extends Activity {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
-				tweetList.clear();
-				deleteFile(FILENAME);  // TODO deprecate this button
+				/*tweetList.clear();
+				deleteFile(FILENAME); TODO deprecate this button*/
+				String text = bodyText.getText().toString();
+				ElasticsearchTweetController.GetTweetsTask getTweetsTask = new ElasticsearchTweetController.GetTweetsTask();
+				getTweetsTask.execute(text);
+				try{
+					tweetList = getTweetsTask.get();
+				}
+				catch(Exception e){
+					Log.i("Error", "Something went wrong in the search");
+				}
 				adapter.notifyDataSetChanged();
 			}
 		});
