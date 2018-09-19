@@ -21,10 +21,15 @@ public abstract class Mood {
     }
 
     Mood(){
-        this.date = new Date();
+        this.date = new Date(System.currentTimeMillis());
     }
 
     Mood(Date date){
         this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return format() + " | " + date.toString();
     }
 }
