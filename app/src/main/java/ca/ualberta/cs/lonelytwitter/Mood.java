@@ -5,6 +5,14 @@ import java.util.Date;
 public abstract class Mood {
     private Date date;
 
+    Mood() {
+        this.date = new Date(System.currentTimeMillis());
+    }
+
+    Mood(Date date) {
+        this.date = date;
+    }
+
     /**
      * A mood-dependent format method which returns a string representing the mood.
      *
@@ -17,14 +25,6 @@ public abstract class Mood {
     }
 
     public void setDate(Date date) {
-        this.date = date;
-    }
-
-    Mood(){
-        this.date = new Date(System.currentTimeMillis());
-    }
-
-    Mood(Date date){
         this.date = date;
     }
 
