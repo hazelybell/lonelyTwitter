@@ -2,18 +2,18 @@ package ca.ualberta.cs.lonelytwitter;
 
 import java.util.Date;
 
-public class Sad extends Mood {
+public class Angry extends Mood {
 
-    public Sad(Date date) {
+    public Angry(Date date) {
         super(date);
     }
 
-    public Sad() {
+    public Angry() {
         super();
     }
 
     @Override
     String format() {
-        return "Sad";
+        return "Angry";
     }
 }
