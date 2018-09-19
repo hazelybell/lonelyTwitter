@@ -5,6 +5,13 @@ import java.util.Date;
 public abstract class Mood {
     private Date date;
 
+    /**
+     * A mood-dependent format method which returns a string representing the mood.
+     *
+     * @return {@code String}
+     */
+    abstract String format();
+
     public Date getDate() {
         return date;
     }
