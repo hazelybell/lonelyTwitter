@@ -1,17 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 18
-    buildToolsVersion "22.0.1"
+    compileSdkVersion 28
 
     defaultConfig {
         applicationId "ca.ualberta.cs.lonelytwitter"
         minSdkVersion 18
-        targetSdkVersion 18
-        compileOptions {
-            sourceCompatibility JavaVersion.VERSION_1_5
-            targetCompatibility JavaVersion.VERSION_1_5
-        }
+        targetSdkVersion 28
     }
 
     buildTypes {
