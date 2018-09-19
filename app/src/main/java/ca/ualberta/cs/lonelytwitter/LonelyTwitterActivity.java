@@ -78,7 +78,19 @@ public class LonelyTwitterActivity extends Activity {
 	}
 	
 	private void saveInFile(String text, Date date) {
+		//ArrayList<String> tweets = new ArrayList<>();
+		ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
+		ArrayList<Mood> moodList = new ArrayList<Mood>();
+		NormalTweet myTweet = new NormalTweet();
+		tweetList.add(myTweet);
+		Happy myMood = new Happy();
+		moodList.add(myMood);
 		try {
+
+			NormalTweet aTweet;
+			aTweet = new NormalTweet("");
+			aTweet.setMessage("I am looooooooooooooong.");
+
 			FileOutputStream fos = openFileOutput(FILENAME,
 					Context.MODE_APPEND);
 			fos.write(new String(date.toString() + " | " + text)
@@ -89,6 +101,9 @@ public class LonelyTwitterActivity extends Activity {
 			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (TweetTooLongException e) {
+			//
 			e.printStackTrace();
 		}
 	}
