@@ -50,7 +50,7 @@ public class LonelyTwitterActivity extends Activity {
 
                 // use the checkboxes to note what moods to add to the tweet
                 // more advanced usage could be developed but this is a simple implementation
-                ArrayList<Mood> moodList = new ArrayList<Mood>();
+                ArrayList<Mood> moodList = new ArrayList<>();
                 Date date = new Date(System.currentTimeMillis());
                 if (sadCheckBox.isChecked()) {
                     moodList.add(new Sad(date));
@@ -75,13 +75,13 @@ public class LonelyTwitterActivity extends Activity {
         // TODO Auto-generated method stub
         super.onStart();
         String[] tweets = loadFromFile();
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 R.layout.list_item, tweets);
         oldTweetsList.setAdapter(adapter);
     }
 
     private String[] loadFromFile() {
-        ArrayList<String> tweets = new ArrayList<String>();
+        ArrayList<String> tweets = new ArrayList<>();
         try {
             FileInputStream fis = openFileInput(FILENAME);
             BufferedReader in = new BufferedReader(new InputStreamReader(fis));
