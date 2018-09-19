@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/oldTweetsTitle"
@@ -15,7 +15,7 @@
         android:layout_width="fill_parent"
         android:layout_height="263dp"
         android:layout_weight="1"
-        android:scrollbars="vertical" >
+        android:scrollbars="vertical">
 
     </ListView>
 
@@ -24,12 +24,33 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="@string/hello" />
-    
+
     <EditText
         android:id="@+id/body"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:scrollbars="horizontal" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/checkBoxHappy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:checked="false"
+            android:text="Happy" />
+
+        <CheckBox
+            android:id="@+id/checkBoxSad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Sad" />
+    </LinearLayout>
 
     <Button
         android:id="@+id/clear"

@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ListView;
 
@@ -23,6 +24,7 @@ public class LonelyTwitterActivity extends Activity {
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
+	private CheckBox checkBoxHappy, checkBoxSad;
 	
 	/** Called when the activity is first created. */
 	@Override
@@ -33,12 +35,23 @@ public class LonelyTwitterActivity extends Activity {
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
 		oldTweetsList = (ListView) findViewById(R.id.oldTweetsList);
-
+		checkBoxHappy = (CheckBox) findViewById(R.id.checkBoxHappy);
+		checkBoxSad = (CheckBox) findViewById(R.id.checkBoxSad);
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
+				Mood m;
+				if(checkBoxHappy.isChecked()){
+					m = new Happy();
+					text += " | " + m.format();
+				}
+				if(checkBoxSad.isChecked()){
+					m = new Sad();
+					text += " | " + m.format();
+				}
+				text += "\n";
 				saveInFile(text, new Date(System.currentTimeMillis()));
 				finish();
 
