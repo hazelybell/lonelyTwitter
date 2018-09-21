@@ -12,6 +12,7 @@ import java.util.Date;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,7 +24,7 @@ public class LonelyTwitterActivity extends Activity {
 	private static final String FILENAME = "file.sav";
 	private EditText bodyText;
 	private ListView oldTweetsList;
-	
+
 	/** Called when the activity is first created. */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -37,10 +38,18 @@ public class LonelyTwitterActivity extends Activity {
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
 			public void onClick(View v) {
-				setResult(RESULT_OK);
-				String text = bodyText.getText().toString();
-				saveInFile(text, new Date(System.currentTimeMillis()));
-				finish();
+				Cat cat1 = new Cat("I am a cat","I love fish and rice");
+
+				DomesticDuck domesticDuck1 = new DomesticDuck("I am a domestic duck","I love fish" );
+
+
+				Log.d("cmput-301",cat1.getType());
+				Log.d("cmput-301", cat1.getFood());
+				Log.d("cmput-301", domesticDuck1.getType());
+				Log.d("cmput-301", domesticDuck1.getFood());
+
+				cat1.swim();
+				domesticDuck1.swim();
 
 			}
 		});
@@ -76,7 +85,7 @@ public class LonelyTwitterActivity extends Activity {
 		}
 		return tweets.toArray(new String[tweets.size()]);
 	}
-	
+
 	private void saveInFile(String text, Date date) {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME,
