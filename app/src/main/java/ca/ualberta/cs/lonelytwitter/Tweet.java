@@ -28,8 +28,14 @@ public abstract class Tweet implements Tweetable {
     public void setMessage(String message) throws TweetTooLongException {
         if (message.length() <= this.MAX_CHARS) {
             this.message = message;
-        } else throw new TweetTooLongException();
+        } else {
+            throw new TweetTooLongException();
+        }
     }
 
     public abstract Boolean isImportant();
+
+    public String toString(){
+        return this.getMessage();
+    }
 }
