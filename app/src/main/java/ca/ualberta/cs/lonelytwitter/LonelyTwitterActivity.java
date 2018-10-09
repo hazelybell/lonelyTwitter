@@ -1,3 +1,10 @@
+/**
+ * LonelyTwitterActivity runs the main application activity
+ *
+ * @author Joshua Charles Campbell, Shawna Dawson
+ * @version 2.3
+ */
+
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
@@ -34,14 +41,15 @@ public class LonelyTwitterActivity extends Activity {
 	ArrayList<Tweet> tweetList;
 	ArrayAdapter<Tweet> adapter;
 
-	/** Called when the activity is first created. */
+	/**
+	 * Called when the activity is first created.
+	 * @param savedInstanceState
+	 */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
 
-		//loadFromFile();
-		//adapter.notifyDataSetChanged();
 		bodyText = (EditText) findViewById(R.id.body);
 		Button saveButton = (Button) findViewById(R.id.save);
 		Button clearButton = (Button) findViewById(R.id.clear);
@@ -49,6 +57,10 @@ public class LonelyTwitterActivity extends Activity {
 
 		saveButton.setOnClickListener(new View.OnClickListener() {
 
+			/**
+			 * Adds a normal tweet to the list of tweets and updates the view
+			 * @param v
+			 */
 			public void onClick(View v) {
 				setResult(RESULT_OK);
 				String text = bodyText.getText().toString();
@@ -58,41 +70,47 @@ public class LonelyTwitterActivity extends Activity {
 
 				saveInFile();
 				adapter.notifyDataSetChanged();
-				//finish();
 
 			}
 		});
 
 		clearButton.setOnClickListener(new View.OnClickListener() {
 
+			/**
+			 * Clears the tweet list and updates the view
+			 * @param v
+			 */
 			public void onClick(View v) {
 				tweetList.clear();
 
 				saveInFile();
 				adapter.notifyDataSetChanged();
-				//finish();
 
 			}
 		});
 	}
 
+
+	/**
+	 * Loads previous tweets from file on app start
+	 */
 	@Override
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
 		loadFromFile();
-		//String[] tweets = loadFromFile();
 		adapter = new ArrayAdapter<Tweet>(this,
 				R.layout.list_item, tweetList); // takes list view and binds to data
 		oldTweetsList.setAdapter(adapter);
 	}
 
+	/**
+	 * Loads previous tweets from disc
+	 */
 	private void loadFromFile() {
-		//ArrayList<String> tweets = new ArrayList<String>();
 		try {
 			FileInputStream fis = openFileInput(FILENAME);
 			BufferedReader in = new BufferedReader(new InputStreamReader(fis));
-			//String line = in.readLine();
 
 			Gson gson = new Gson(); //library to save objects
 			Type listType = new TypeToken<ArrayList<NormalTweet>>(){}.getType();
@@ -105,9 +123,11 @@ public class LonelyTwitterActivity extends Activity {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		//return tweets.toArray(new String[tweets.size()]);
 	}
-	
+
+	/**
+	 * Saves tweets to disc
+	 */
 	private void saveInFile() {
 		//ArrayList<String> tweets = new ArrayList<>();
 		//ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
