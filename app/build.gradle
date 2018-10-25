@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 android {
     compileSdkVersion 18
-    buildToolsVersion '28.0.2'
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         applicationId "ca.ualberta.cs.lonelytwitter"
@@ -22,5 +22,6 @@ android {
 }
 
 dependencies {
-    implementation 'com.google.code.gson:gson:2.5'
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.jayway.android.robotium:robotium-solo:5.6.3'
 }
