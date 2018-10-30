@@ -7,8 +7,6 @@ import android.widget.ListView;
 
 import com.robotium.solo.Solo;
 
-import junit.framework.TestCase;
-
 /**
  * Created by wz on 14/09/15.
  */
@@ -53,8 +51,8 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2<
         solo.waitForText("Test Tweet");
 
         final ListView oldTweetsList = activity.getOldTweetsList();
-        Tweet tweet = (Tweet) oldTweetsList.getItemAtPosition(0);
-        assertEquals("Test Tweet!", tweet.getMessage());
+        Tweet Tweet = (Tweet) oldTweetsList.getItemAtPosition(0);
+        assertEquals("Test Tweet!", Tweet.getMessage());
         
         solo.clickInList(0);
         solo.assertCurrentActivity("Wrong Activity", EditTweetActivity.class);
