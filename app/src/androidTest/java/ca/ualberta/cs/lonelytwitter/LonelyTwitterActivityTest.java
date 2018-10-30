@@ -17,11 +17,11 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2<
         super(ca.ualberta.cs.lonelytwitter.LonelyTwitterActivity.class);
     }
 
-    public void setUp() throws Exception{
+    public void setUp() {
         solo = new Solo(getInstrumentation(), getActivity());
     }
 
-    public void testStart() throws Exception {
+    public void testStart() {
         Activity activity = getActivity();
     }
 
@@ -65,7 +65,7 @@ public class LonelyTwitterActivityTest extends ActivityInstrumentationTestCase2<
 
 
     @Override
-    public void tearDown() throws Exception{
+    public void tearDown() {
         solo.finishOpenedActivities();
     }
 }

@@ -3,8 +3,9 @@ package ca.ualberta.cs.lonelytwitter;
 import java.util.Date;
 
 public abstract class Tweet {
-    public String message;
-    public Date date;
+    // made these private
+    private String message;
+    private Date date;
 
     public Tweet(String message){
         this.message = message;

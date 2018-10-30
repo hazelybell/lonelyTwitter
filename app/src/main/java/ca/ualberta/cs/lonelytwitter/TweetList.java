@@ -2,8 +2,10 @@ package ca.ualberta.cs.lonelytwitter;
 
 import java.util.ArrayList;
 
-public class TweetList {
-    private ArrayList<Tweet> Tweets = new ArrayList<Tweet>();
+// made this package private
+class TweetList {
+    // made this final
+    private final ArrayList<Tweet> Tweets = new ArrayList<Tweet>();
 
     public TweetList() {
 
