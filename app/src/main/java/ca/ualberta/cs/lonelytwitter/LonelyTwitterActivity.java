@@ -1,3 +1,13 @@
+/*
+ * CMPUT 301
+ *
+ * Version 1.3
+ *
+ * 1/22/19 6:40 PM
+ *
+ * Copyright (c) 2019. All rights reserved.
+ */
+
 package ca.ualberta.cs.lonelytwitter;
 
 import java.io.BufferedReader;
@@ -25,6 +35,9 @@ import android.widget.ListView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
+/**
+ * Views the recent tweets and allows tweeting
+ */
 public class LonelyTwitterActivity extends Activity {
 
 	private static final String FILENAME = "file.sav";
@@ -33,7 +46,7 @@ public class LonelyTwitterActivity extends Activity {
 	private ArrayAdapter<Tweet> adapter;
 	private ArrayList<Tweet> tweetList = new ArrayList<Tweet>();
 	
-	/** Called when the activity is first created. */
+	/** Called when the activity is first created. Creates the body of the page */
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -68,6 +81,9 @@ public class LonelyTwitterActivity extends Activity {
 	}
 
 	@Override
+	/**
+	 * Called on Start
+	 */
 	protected void onStart() {
 		// TODO Auto-generated method stub
 		super.onStart();
@@ -77,6 +93,9 @@ public class LonelyTwitterActivity extends Activity {
 		oldTweetsList.setAdapter(adapter);
 	}
 
+	/**
+	 * Load the tweetList from the file
+	 */
 	private void loadFromFile() {
 		ArrayList<String> tweets = new ArrayList<String>();
 		try {
@@ -97,7 +116,10 @@ public class LonelyTwitterActivity extends Activity {
 		}
 		// return tweets.toArray(new String[tweets.size()]);
 	}
-	
+
+	/**
+	 * Save the file with the tweetList
+	 */
 	private void saveInFile() {
 		try {
 			FileOutputStream fos = openFileOutput(FILENAME, Context.MODE_PRIVATE);
