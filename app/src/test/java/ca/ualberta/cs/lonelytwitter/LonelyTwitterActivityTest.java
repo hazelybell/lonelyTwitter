@@ -65,6 +65,19 @@ public class LonelyTwitterActivityTest {
 
     @Test
     public void getCountTest(){
-        
+        LonelyTwitterActivity holder = new LonelyTwitterActivity();
+        Tweet temp1 = new Tweet("ZI");
+        Tweet temp2 = new Tweet("HI");
+        Tweet temp3 = new Tweet("AI");
+        Tweet temp4 = new Tweet("AI");
+        assertEquals(0,holder.getCount());
+        holder.addTweet(temp1);
+        assertEquals(1,holder.getCount());
+        holder.addTweet(temp2);
+        assertEquals(2,holder.getCount());
+        holder.addTweet(temp3);
+        assertEquals(3,holder.getCount());
+        holder.addTweet(temp4);
+        assertEquals(4,holder.getCount());
     }
 }
