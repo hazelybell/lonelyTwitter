@@ -60,6 +60,19 @@ public class LonelyTwitterActivityTest {
 
     @Test
     public void hasTest(){
+        // violates some encapsulation principles in order to put 2 of the same object into tweetlist
+        LonelyTwitterActivity holder = new LonelyTwitterActivity();
+        Tweet temp3 = new Tweet("AI");
+        Tweet temp4 = new Tweet("AI");
+        // assumes we can directly modify the stored tweetlist for the test
+        holder.addTweet(temp3);
+        holder.addTweet(temp4);
+        assertEquals(false, holder.hasTweet());
+        ArrayList<Tweet> obtained = holder.getTweets();
+        obtained.add(temp3);
+        assertEquals(true, holder.hasTweet());
+        obtained.remove(obtained.get(obtained.size()-1));
+        assertEquals(false, holder.hasTweet());
 
     }
 
